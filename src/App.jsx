@@ -1,13 +1,37 @@
-import './App.css';
+// import React from "react";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import './assets/styles/index.css'
+import { Home, About, Activitie, Gallery, Report } from "./pages/General";
+import { GuestLayout } from "./layout";
 
-function App() {
+import Login from "./pages/General/Login";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <GuestLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/home", element: <Navigate to="/#home" /> },
+      { path: "/about", element: <About /> },
+      { path: "/activities", element: <Activitie /> },
+      { path: "/gallery", element: <Gallery /> },
+      { path: "/reports", element: <Report /> },
+      { path: "/contact", element: <Navigate to="/home/#contact" /> },
+      { path: "/login", element: <Login /> },
+    ],
+  },
+  { path: "*", element: <Navigate to="/" /> },
+]);
+
+export default function App() {
   return (
-    <div className="w-full">
-      <header className="flex justify-center items-center font-bold text-2xl">
-        NSS EMEA Website
-      </header>
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
-
-export default App;
