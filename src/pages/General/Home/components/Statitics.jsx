@@ -8,6 +8,10 @@ function Statitics() {
             value: 1000
         },
         {
+            title: 'Total Volunteers',
+            value: 100
+        },
+        {
             title: 'Total Donors',
             value: 100
         },
@@ -18,7 +22,7 @@ function Statitics() {
     ]
   return (
     <div className='bg-blue-950 w-full p-4'>
-        <div className='grid grid-cols-3 gap-4'>
+        <div className='grid grid-cols-3 gap-4 max-w-[1200px] mx-auto'>
             {
                 Statitics.map((statitics, index) => (
                     <div key={index} className='text-center p-4'>

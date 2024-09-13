@@ -7,8 +7,11 @@ function Home() {
       <Activitie />
       <About />
       <MajorEvents />
+      <div>
       <Report />
       <Statitics />
+      </div>
+     
       <NodalOfficer />
       <Contact />
     </section>

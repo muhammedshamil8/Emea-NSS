@@ -7,15 +7,18 @@ const OPTIONS = { loop: true };
 
 function Activitie() {
   return (
-    <div className='mx-auto max-w-[1100px] '>
+    <div className='mx-auto max-w-[1200px] '>
       <div className='text-center mb-6'>
         <h1 className='text-2xl text-center text-indigo-700 font-semibold'>Recent Activities</h1>
         <p className='font-normal text-sm'>Highlighting Major Activities by NSS EMEA</p>
       </div>
       <EmblaCarousel slides={ImageIDs} options={OPTIONS} />
-      {/* <Navigate to='/activities' className='text-center text-sm cursor-pointer'>
-        View all Activities
-      </Navigate> */}
+      <div className='w-full text-center'>
+        <a href='/activities' className=' text-sm cursor-pointer font-semibold'>
+          View all Activities
+        </a>
+      </div>
+
     </div>
   )
 }

@@ -109,7 +109,7 @@ const EmblaCarousel = (props) => {
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div> */}
-        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+        <div className="absolute bottom-4 left-2/4 !z-20 flex -translate-x-2/4 gap-2">
           {slides.map((_, i) => (
             <span
               key={i}

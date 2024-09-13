@@ -8,3 +8,36 @@
     margin: 0;
     padding: 0;
 }
+
+
+
+/* report wave shape */
+.custom-shape-divider-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top svg {
+    position: relative;
+    display: block;
+    width: calc(109% + 1.3px);
+    height: 109px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top .shape-fill {
+    fill: #fff;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+    .custom-shape-divider-top svg {
+        width: calc(123% + 1.3px);
+        height: 39px;
+    }
+}
