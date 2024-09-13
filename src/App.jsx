@@ -5,10 +5,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './assets/styles/index.css'
-import { Home, About, Activitie, Gallery, Report } from "./pages/General";
-import { GuestLayout } from "./layout";
 
-import Login from "./pages/General/Login";
+import { Home, About, Activitie, Gallery, Report , Login } from "./pages/General";
+import { GuestLayout, AdminLayout, VolunteerLayout } from "./layout";
+import { AdminDashboard, AdminBanners, AdminEvents, AdminReports, AdminVolunteers } from "./pages/Admin";
+import { VolunteerDashboard, VolunteerEvents, VolunteerProfile } from "./pages/Volunteer";
+
+import { AuthProvider } from "./context/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -25,13 +28,37 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
     ],
   },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      { path: "", element: <AdminDashboard /> },
+      { path: "banners", element: <AdminBanners /> },
+      { path: "events", element: <AdminEvents /> },
+      { path: "reports", element: <AdminReports /> },
+      { path: "volunteers", element: <AdminVolunteers /> }
+
+    ]
+  },
+  {
+    path: "/volunteer",
+    element: <VolunteerLayout />,
+    children: [
+      { path: "", element: <VolunteerDashboard /> },
+      { path: "events", element: <VolunteerEvents /> },
+      { path: "profile", element: <VolunteerProfile /> }
+    ]
+  },
+  { path: "/404", element: <div>404</div>, },
   { path: "*", element: <Navigate to="/" /> },
 ]);
 
 export default function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }
