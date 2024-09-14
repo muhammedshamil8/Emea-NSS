@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import AuthRoleRequire from '../components/router/Authrole';
 import { useAuth } from '../context/AuthContext';
 import { User, Calendar, Home, LogOut } from 'lucide-react';
-
+import classNames from 'classnames';
 function VolunteerLayout() {
   const authContext = useAuth();
   const { user, role: userRole, handleSignOut } = authContext || {};
+  const location = useLocation();
   const navLinks = [
     {
       title: 'Dashboard',
@@ -46,7 +46,10 @@ function VolunteerLayout() {
       <nav className="hidden md:flex bg-green-500 text-white p-4">
         <ul className="flex gap-6">
           {navLinks.map((navLink, index) => (
-            <li key={index} className="hover:bg-green-700 p-2 rounded-lg">
+            <li key={index} className={classNames('hover:bg-green-700 p-2 rounded-lg',
+              {
+                'bg-green-700': location.pathname === navLink.link
+              })}>
               <Link to={navLink.link} className="flex items-center gap-2">
                 {navLink.icon}
                 {navLink.title}
@@ -65,7 +68,10 @@ function VolunteerLayout() {
       <nav className="fixed bottom-0 w-full bg-green-600 text-white md:hidden">
         <ul className="flex justify-around p-2">
           {navLinks.map((navLink, index) => (
-            <li key={index}>
+             <li key={index} className={classNames('hover:bg-green-700 p-2 rounded-lg',
+             {
+               'bg-green-700': location.pathname === navLink.link
+             })}>
               <Link to={navLink.link} className="flex flex-col items-center">
                 {navLink.icon}
                 <span className="text-xs">{navLink.title}</span>
