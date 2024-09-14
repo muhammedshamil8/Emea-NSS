@@ -1,7 +1,7 @@
 const navLinks = [
   {
     label: "Home",
-    href:"/#home"
+    href:"/"
   },
   {
     label: "Activities",
