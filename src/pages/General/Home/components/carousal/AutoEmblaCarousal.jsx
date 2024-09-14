@@ -41,12 +41,14 @@ const EmblaCarousel = (props) => {
                                 src={slide.src}
                                 alt={slide.alt}
                             />
-                            <div className="text-white z-30 absolute bottom-24 left-36 space-y-2 ">
-                                <h1 className="text-[38px] font-black">{data.title}</h1>
-                                <p className="max-w-[60%] text-xl pb-2 font-normal">{data.description}</p>
-                                <button className="bg-red-500  rounded-lg py-2 px-6 font-semibold">
-                                    {data.button}
-                                </button>
+                            <div className=' z-30 absolute bottom-24 left-4 space-y-2 w-full'>
+                                <div className="w-full mx-auto text-white max-w-[1200px]">
+                                    <h1 className="text-[38px] font-black">{data.title}</h1>
+                                    <p className="max-w-[60%] text-xl pb-2 font-normal">{data.description}</p>
+                                    <button className="bg-red-500  rounded-lg py-2 px-6 font-semibold">
+                                        {data.button}
+                                    </button>
+                                </div>
                             </div>
                             {/* Add the gradient overlay */}
                             <div className="absolute inset-0 z-20 bg-gradient-to-t from-black via-transparent to-transparent"></div>

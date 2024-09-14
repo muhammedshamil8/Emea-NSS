@@ -98,7 +98,7 @@ const EmblaCarousel = (props) => {
                 src={slide}
                 alt="Your alt text"
               />
-              {/* {process.env.REACT_APP_IMAGE_URL + slide} */}
+              {/* {import.meta.env.VITE_IMAGE_URL + slide} */}
             </div>
           ))}
         </div>
