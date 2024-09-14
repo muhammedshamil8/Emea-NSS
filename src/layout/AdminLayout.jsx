@@ -1,12 +1,14 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import AuthRoleRequire from '../components/router/Authrole';
 import { useAuth } from '../context/AuthContext';
 import { Home, Flag, Calendar, BarChart2, Users, LogOut } from 'lucide-react';
+import classNames from 'classnames';
 
 function AdminLayout() {
   const authContext = useAuth();
   const { user, role: userRole, handleSignOut } = authContext || {};
+  const location = useLocation();
+
   const navLinks = [
     {
       title: 'Dashboard',
@@ -53,8 +55,12 @@ function AdminLayout() {
       <nav className="hidden md:flex bg-blue-500 text-white p-4">
         <ul className="flex gap-6">
           {navLinks.map((navLink, index) => (
-            <li key={index} className="hover:bg-blue-700 p-2 rounded-lg">
-              <Link to={navLink.link} className="flex items-center gap-2">
+            <li key={index} className={classNames('hover:bg-blue-700 p-2 rounded-lg',
+            {
+              'bg-blue-700': location.pathname === navLink.link
+            })}>
+              <Link to={navLink.link} className={classNames('flex items-center gap-2',
+               )} >
                 {navLink.icon}
                 {navLink.title}
               </Link>
@@ -72,7 +78,10 @@ function AdminLayout() {
       <nav className="fixed bottom-0 w-full bg-blue-600 text-white md:hidden">
         <ul className="flex justify-around p-2">
           {navLinks.map((navLink, index) => (
-            <li key={index}>
+              <li key={index} className={classNames('hover:bg-blue-700 p-2 rounded-lg',
+              {
+                'bg-blue-700': location.pathname === navLink.link
+              })}>
               <Link to={navLink.link} className="flex flex-col items-center">
                 {navLink.icon}
                 <span className="text-xs">{navLink.title}</span>

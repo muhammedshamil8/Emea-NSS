@@ -5,7 +5,7 @@ import { NavBar, Footer } from "../components/layout";
 function GuestLayout() {
     return (
         <>
-            <div className="fixed !z-50 left-0 right-0 h-16 mb top-0 bg-white">
+            <div className="fixed !z-50 left-0 right-0 h-16 mb top-0 bg-white shadow-sm shadow-gray-400">
                 <NavBar />
             </div>
             <div className="mt-16" />
