@@ -2,14 +2,18 @@ import { Activitie, Banner, Contact , About , MajorEvents , Report , Statitics ,
 
 function Home() {
   return (
-    <section className='flex flex-col gap-16' id='home'>
+    <section className='flex flex-col gap-16 max-w-full' id='home'>
       <Banner />
       <Activitie />
       <About />
       <MajorEvents />
+      <div>
       <Report />
       <Statitics />
-      <NodalOfficer />
+      </div>
+     <div className='max-w-full'>
+     <NodalOfficer />
+     </div>
       <Contact />
     </section>
   )
