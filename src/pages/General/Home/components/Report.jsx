@@ -6,7 +6,7 @@ function Report() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/about')
+    navigate('/reports')
   }
   return (
     <div className='relative bg-slate-200'>
@@ -21,7 +21,7 @@ function Report() {
           <p className='max-w-[500px]'>
             Discover the impactful activities and initiatives carried out by our NSS volunteers. Our comprehensive reports document our journey, showcasing community service projects, special events, and the positive changes we've fostered.Discover the impactful activities and initiatives carried out by our NSS volunteers. Our comprehensive reports document our journey, showcasing community service projects, special events, and the positive changes we've fostered.
           </p>
-          <button className='border border-red-500 text-red-500 px-4 py-2 rounded-md w-fit' onClick={handleClick}>View Reports</button>
+          <button className='border border-red-500 text-red-500 px-4 py-1.5 rounded-3xl md:rounded-md w-fit' onClick={handleClick}>View Reports</button>
         </div>
         <div className='sm:w-1/2 mx-auto'>
           <div className='flex flex-col gap-2 md:gap-3'>

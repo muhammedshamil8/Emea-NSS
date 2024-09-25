@@ -97,8 +97,8 @@ const ContactCard = ({ officer, size }) => {
     <div className='w-fit rounded-xl bg-white shadow p-4'>
       <div className={classNames('bg-slate-200 rounded-full overflow-hidden m-4  flex items-center justify-center pt-4',
         {
-          'w-44 h-44': size === 'big',
-          'w-[140px] h-[140px]': size === 'small',
+          'w-[100px] sm:w-44 h-[100px] sm:h-44': size === 'big',
+          'w-[100px] sm:w-[140px] h-[100px] sm:h-[140px]': size === 'small',
         }
       )}>
         {officer.image && <img src={officer.image} alt={officer.name} className='h-auto w-auto' />}

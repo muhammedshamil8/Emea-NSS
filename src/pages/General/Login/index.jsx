@@ -47,8 +47,8 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-green-400 to-blue-500">
-            <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <div className="flex flex-col items-center justify-center h-[65vh] bg-gradient-to-r from-green-400 to-blue-500 p-4">
+            <div className="bg-white shadow-lg rounded-lg p-8  max-w-md w-full">
                 <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Welcome Back</h1>
                 <div className="mb-4">
                     <label className="block text-gray-700 mb-2" htmlFor="email">
