@@ -10,6 +10,7 @@
   }
   .embla__container {
     display: flex;
+    max-width: 100%;
     touch-action: pan-y pinch-zoom;
     margin-left: calc(var(--slide-spacing) * -1);
   }

@@ -28,7 +28,7 @@
     /* height: auto; */
     object-fit: cover;
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 1300px) {
     .embla2 {
       --slide-height: 50rem;
       --slide-spacing: 1rem;
