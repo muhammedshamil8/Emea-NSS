@@ -8,7 +8,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
-import { Trash2, Edit, Plus, Loader, Eye } from "lucide-react";
+import { Trash2, Edit, Plus, Loader, Eye, ChevronRight, ChevronLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
@@ -30,6 +30,60 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import dayjs from "dayjs";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import classNames from "classnames";
+
+function SampleNextArrow(props) {
+  const { className, style, onClick, color } = props;
+  const isDisabled = className && className.includes("slick-disabled");
+  return (
+    <div
+      className={classNames(className, `rounded-xl flex items-center justify-center text-${color}  absolute right-[20px] top-[10px] sm:top-[10px] z-10 custom-arrow`,
+        {
+          '!text-gray-500': isDisabled,
+          [`!text-${color}`]: !isDisabled
+        })}
+      style={{
+        ...style,
+        display: "block",
+        background: "",
+        fontSize: "40px",
+        lineHeight: "1",
+      }}
+      onClick={onClick}
+    >
+      <ChevronRight size={40} />
+    </div>
+  );
+}
+function SamplePrevArrow(props) {
+  const { className, style, onClick, color } = props;
+  console.log('color:', color);
+  const isDisabled = className && className.includes("slick-disabled");
+  return (
+    <div
+      className={classNames(className, `rounded-xl flex items-center justify-center text-${color}  absolute left-[20px] top-[10px] sm:top-[10px] z-10 custom-arrow `,
+        {
+          '!text-gray-500': isDisabled,
+          [`text-${color}`]: !isDisabled
+        }
+      )}
+      style={{
+        ...style,
+        display: "block",
+        background: "",
+        fontSize: "40px",
+        lineHeight: "1",
+      }}
+      onClick={onClick}
+    >
+      <ChevronLeft size={40} />
+    </div >
+  );
+}
+
 
 function Event() {
   const [events, setEvents] = useState([]);
@@ -116,6 +170,39 @@ function Event() {
     return new Date(date?.seconds * 1000);
   }
 
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow color={'black'} />,
+    prevArrow: <SamplePrevArrow color={'black'} />,
+    responsive: [
+      // {
+      //     breakpoint: 1124,
+      //     settings: {
+      //         slidesToShow: 3,
+      //         slidesToScroll: 1,
+      //     }
+      // },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ],
+  };
+
   return (
     <div className="container mx-auto p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:gap-2 justify-between items-center mb-6">
@@ -136,8 +223,12 @@ function Event() {
       ) :
         (
           <>
-            <h2 className="text-xl font-semibold mb-4">Major Events</h2>
-            <div className="flex gap-4 overflow-auto mb-8">
+            <div className="">
+              <h2 className="text-xl font-semibold mb-4">Major Events</h2>
+              <h5 className="text-gray-600 mb-4">Major events are displayed on the home page of the website.</h5>
+              <p className="text-gray-600 mb-4">Total M-Events: {majorEvents.length}</p>
+            </div>
+            <Slider {...settings} className="h-full mb-6 !z-20">
               {majorEvents.map((event) => (
                 <div
                   key={event.id}
@@ -220,6 +311,13 @@ function Event() {
                   </div>
                 </div>
               ))}
+            </Slider>
+            <div className="">
+              <h2 className="text-xl font-semibold mb-4">Events</h2>
+              <h5 className="text-gray-600 mb-4">
+                Events are displayed on the events page of the website.
+              </h5>
+              <p className="text-gray-600 mb-4">Total Events: {events.length}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {events.map((event) => (

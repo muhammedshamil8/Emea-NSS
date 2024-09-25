@@ -38,7 +38,7 @@ function VolunteerLayout() {
 
   return (
     <AuthRoleRequire role="volunteer">
-      <header className="bg-green-600 text-white p-4 flex justify-between items-center">
+      <header className="bg-green-600 text-white p-4 flex justify-between items-center z-50">
         <div className="text-lg font-bold">Volunteer Panel</div>
         <div className="flex items-center space-x-4">
           <span>{user?.displayName}</span>
@@ -49,7 +49,7 @@ function VolunteerLayout() {
         </div>
       </header>
 
-      <nav className="hidden md:flex bg-green-500 text-white p-4">
+      <nav className="hidden md:flex bg-green-500 text-white p-4 z-50">
         <ul className="flex gap-6">
           {navLinks.map((navLink, index) => (
             <li key={index} className={classNames('hover:bg-green-700 p-2 rounded-lg', {

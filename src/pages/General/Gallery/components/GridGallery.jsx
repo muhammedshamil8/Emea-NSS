@@ -10,9 +10,9 @@ export function GridGallery({ galleryItems, isLoading }) {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="columns-2 md:columns-4 gap-4 space-y-4">
         {[...Array(8)].map((_, index) => (
-          <div key={index} className="bg-gray-200 h-40 rounded-lg animate-pulse"></div>
+          <div key={index} className={`bg-gray-200  rounded-lg animate-pulse ${index % 2 === 0 ? 'h-40' : 'h-80'}`}></div>
         ))}
       </div>
     );

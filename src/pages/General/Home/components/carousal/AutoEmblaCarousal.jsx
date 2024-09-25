@@ -41,15 +41,28 @@ const EmblaCarousel = (props) => {
                                 src={slide.src}
                                 alt={slide.alt}
                             />
-                            <div className=' z-30 absolute bottom-10 sm:bottom-24 left-4 space-y-2 max-w-full'>
-                                <div className="w-full mx-auto text-white max-w-[1300px] p-2">
-                                    <h1 className="text-[20px] sm:text-[38px] font-black">{data.title}</h1>
-                                    <p className="max-w-[80%] sm:max-w-[60%] text-sm sm:text-xl pb-2 font-normal">{data.description}</p>
-                                    <button className="bg-red-500  rounded-lg text-sm py-1 sm:text-md sm:py-2 px-6 font-semibold">
-                                        {data.button}
+
+                            <div className="z-30 absolute bottom-8 md:bottom-16 left-0 right-0 mx-auto max-w-full flex justify-center px-4">
+                                <div className="w-full text-white max-w-[1300px] p-2">
+                                    <h1 className="text-[20px] sm:text-[38px] font-black text-left">
+                                        {data.title || "Default Title"}
+                                    </h1>
+                                    <p className="text-responsive font-normal text-left text-sm sm:text-xl">
+                                        {data.description || "Default description text that is long enough to test the two-line limit."}
+                                    </p>
+                                    <button
+                                        className="bg-red-500 rounded-lg text-sm py-1 sm:text-md sm:py-2 px-6 font-semibold hover:bg-red-600 transition duration-200"
+                                        aria-label={data.button || "Default button action"}
+                                    >
+                                        {data.button || "Click Me"}
                                     </button>
                                 </div>
                             </div>
+
+
+
+
+
                             {/* Add the gradient overlay */}
                             <div className="absolute inset-0 z-20 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                         </div>
