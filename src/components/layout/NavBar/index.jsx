@@ -25,9 +25,9 @@ function NavBar() {
   }
 
   return (
-    <div className='flex justify-between p-2 max-w-[1300px] mx-auto !z-50'>
+    <div className='flex justify-between p-2 max-w-[1300px] mx-auto !z-50 w-[90%]'>
       <div>
-        <img src={Logo} alt='logo' className='w-auto h-12' />
+        <img src={Logo} alt='logo' className='w-auto h-10 sm:h-12' />
       </div>
       <div className='hidden md:flex items-center justify-center gap-4'>
         {navLinks.map((link, index) => (
@@ -58,7 +58,7 @@ function NavBar() {
           </div>
         ))}
         <button
-          className='bg-red-500 text-white p-1.5 rounded-xl px-6 hover:bg-red-600'
+          className='bg-red-500 text-white p-[5px] rounded-xl px-6 hover:bg-red-600'
           onClick={handleClick}
         >
           Login
@@ -68,7 +68,7 @@ function NavBar() {
       {/* Mobile Menu Toggle */}
       <div className="md:hidden flex gap-2 items-center justify-center">
         <button
-          className='bg-red-500 text-white p-1.5 rounded-xl px-6 hover:bg-red-600'
+          className='bg-red-500 text-white p-1 rounded-xl px-4 sm:px-6 hover:bg-red-600'
           onClick={handleClick}
         >
           Login
@@ -97,7 +97,7 @@ function NavBar() {
           }`}
       >
         {navLinks.map((link, index) => (
-          <div key={index} className="flex items-center justify-center gap-4" onClick={handleContactScroll}>
+          <div key={index} className="flex items-center justify-center gap-4 " onClick={handleContactScroll}>
             {link.href === '/contact' ? (
               <ScrollLink
                 onClick={() => {
@@ -109,7 +109,7 @@ function NavBar() {
                 smooth={true}
                 duration={500}
                 className={`${location.pathname === link.href || location.hash === '#contact' ? 'text-red-500 font-bold' : 'text-black'
-                  } hover:text-red-500 transition-all ease-in-out cursor-pointer`}
+                  } hover:text-red-500 transition-all ease-in-out cursor-pointer p-2`}
               >
                 {link.label}
               </ScrollLink>
@@ -118,7 +118,7 @@ function NavBar() {
                 to={link.href}
                 onClick={() => { toggleNav() }}
                 className={`${location.pathname === link.href && location.hash !== '#contact' ? 'text-red-500 font-bold' : 'text-black'
-                  } hover:text-red-500 transition-all ease-in-out`}
+                  } hover:text-red-500 transition-all ease-in-out p-2`}
               >
                 {link.label}
               </Link>
