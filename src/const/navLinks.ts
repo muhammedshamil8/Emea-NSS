@@ -17,7 +17,7 @@ const navLinks = [
   },
   {
     label: "Contact Us",
-    href:"/#contact"
+    href:"/contact"
   }
 ];
 
