@@ -5,7 +5,7 @@ import Image4 from '../../assets/images/Activity/event4.jpeg'
 import Image5 from '../../assets/images/Activity/event5.jpeg'
 import Image6 from '../../assets/images/Activity/event6.jpeg'
 
-const ImageIDs = [
+const Images = [
         Image1,
         Image2,
         Image3,
@@ -14,4 +14,4 @@ const ImageIDs = [
         Image6,
 ]
 
-export default ImageIDs
+export default Images
