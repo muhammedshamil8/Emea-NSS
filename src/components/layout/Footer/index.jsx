@@ -1,31 +1,52 @@
 import React from 'react'
-import NssLogo from '../../../assets/icons/FooterLogo.png';
-import navLinks from '../../../const/navLinks';
+import NssLogo from '@/assets/icons/FooterLogo.png';
+import navLinks from '@/const/navLinks';
+import { NavLink } from 'react-router-dom';
+import { Instagram, Facebook, Twitter } from 'lucide-react'
 
 function Footer() {
   return (
-    <footer className='bg-blue-950 rounded-t-xl w-full p-6 py-16 h-full'>
-      <div className=' flex justify-between p-6 text-white max-w-[1200px] mx-auto'>
-        <div className='flex flex-col gap-6'>
+    <footer className='bg-blue-950 rounded-t-3xl w-full p-4 md:p-6 py-8 h-full'>
+      <div className=' flex flex-col md:flex-row justify-between md:p-6 text-white max-w-[1300px] mx-auto gap-4 md:gap-0'>
+        <div className='flex flex-col  gap-6 w-full'>
           <div>
-           <img src={NssLogo} alt='NSS EMEA Logo' className='h-12'/>
+            <img src={NssLogo} alt='NSS EMEA Logo' className='h-10 md:h-12 mx-auto md:mx-0' />
           </div>
-          <div>
-            Icons
+          <div className=' gap-2 hidden md:flex mx-auto md:mx-0'>
+            <Instagram />
+            <Facebook />
+            <Twitter />
           </div>
         </div>
-        <div className='flex flex-col gap-6'>
-          <div className='flex gap-4'>
-           {navLinks.map((link) => (
-             <a href={link.href} className='text-white'>{link.label}</a>
-           ))}
+        <div className='flex flex-col gap-6 mx-auto'>
+          <div className='flex flex-col md:flex-row gap-4 mx-auto'>
+            {navLinks.map((link, index) => (
+              <NavLink key={index} to={link.href} className='text-white truncate'>{link.label}</NavLink>
+              // <a key={index} href={link.href} className='text-white'>{link.label}</a>
+            ))}
           </div>
-          <div className='w-fit overflow-hidden rounded-full my-4'>
-           <input type='text' placeholder='Email' className='bg-gray-200 text-gray-600   rounded-full px-4 h-10 w-[260px]'/><button className='bg-red-400 text-white  px-4 h-10 rounded-full -ml-10'>Subscribe</button>
+          <div className='w-fit overflow-hidden rounded-full my-2 flex mx-auto md:mx-0'>
+            <input type='text' placeholder='Email' className='bg-gray-200 text-gray-600   rounded-full px-4 h-10 max-w-[260px]' /><button className='bg-red-400 text-white  px-4 h-10 rounded-full -ml-10'>Subscribe</button>
           </div>
+        </div>
+        <div className='flex gap-2 md:hidden mx-auto mb-4'>
+          <Instagram />
+          <Facebook />
+          <Twitter />
         </div>
       </div>
-      <hr className='h-2 border-gray-500'/>
+      <p className="text-center text-white py-4"> © {new Date().getFullYear()} NSS EMEA. All rights reserved.</p>
+      <hr className='h-2 border-gray-500' />
+      <p className="text-center text-gray-400">
+        Crafted with <span className="text-red-500">❤️</span> by{' '}
+        <a href="https://dayyan.me" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">
+          Dayyan
+        </a>{' '}
+        and{' '}
+        <a href="https://zamil.me" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">
+          Shamil
+        </a>
+      </p>
     </footer>
   )
 }
