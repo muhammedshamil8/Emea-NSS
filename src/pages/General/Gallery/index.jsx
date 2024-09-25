@@ -38,73 +38,73 @@ function Gallery() {
       title: 'Sunset at the Beach',
     },
     {
-      id: 1,
+      id: 11,
       image:
         'https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
       title: 'Mountain View',
     },
     {
-      id: 2,
+      id: 21,
       image:
         'https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80',
       title: 'Desert Dunes',
     },
     {
-      id: 3,
+      id: 31,
       image:
         'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
       title: 'Lake and Forest',
     },
     {
-      id: 4,
+      id: 41,
       image:
         'https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       title: 'Foggy Mountain',
     },
     {
-      id: 5,
+      id: 51,
       image:
         'https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
       title: 'Sunset at the Beach',
     },
     {
-      id: 3,
+      id: 32,
       image:
         'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
       title: 'Lake and Forest',
     },
     {
-      id: 4,
+      id: 42,
       image:
         'https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       title: 'Foggy Mountain',
     },
     {
-      id: 5,
+      id: 52,
       image:
         'https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
       title: 'Sunset at the Beach',
     },
     {
-      id: 1,
+      id: 12,
       image:
         'https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
       title: 'Mountain View',
     },
     {
-      id: 2,
+      id: 22,
       image:
         'https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80',
       title: 'Desert Dunes',
     },
     {
-      id: 3,
+      id: 33,
       image:
         'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80',
       title: 'Lake and Forest',
     },
     {
-      id: 4,
+      id: 43,
       image:
         'https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       title: 'Foggy Mountain',
@@ -121,8 +121,8 @@ function Gallery() {
 
   return (
     <div className="min-h-[100vh] bg-gray-50 py-8">
-      <h1 className="text-2xl text-center text-indigo-700 font-semibold mb-8">Gallery</h1>
-      <div className="mx-auto max-w-[1200px] px-4">
+      <h1 className="text-2xl text-center text-indigo-700 font-semibold mb-8">Photo Gallery</h1>
+      <div className="mx-auto max-w-[1300px] px-4">
         <GridGallery galleryItems={galleryItems} isLoading={isLoading} />
       </div>
     </div>

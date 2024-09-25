@@ -4,6 +4,7 @@ import { auth } from "../../../config/firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useAuth } from '../../../context/AuthContext';
 import { Lock, Mail } from 'lucide-react';
+import { Loader } from 'lucide-react';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const Login = () => {
     const navigate = useNavigate();
     const authContext = useAuth();
     const { user, role: userRole, handleSignOut } = authContext || {};
-
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         if (user) {
             if (userRole === 'admin') {
@@ -26,6 +27,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
+            setLoading(true);
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             const idTokenResult = await user.getIdTokenResult();
@@ -39,6 +41,8 @@ const Login = () => {
 
         } catch (error) {
             console.error('Error logging in:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -79,10 +83,11 @@ const Login = () => {
                     </div>
                 </div>
                 <button
-                    className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                    className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center"
                     onClick={handleLogin}
+                    disabled={loading}
                 >
-                    Login
+                    {loading ? <Loader className="animate-spin" /> : 'Login'}
                 </button>
             </div>
         </div>

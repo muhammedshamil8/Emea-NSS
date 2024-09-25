@@ -92,7 +92,7 @@ const NodalOfficers = [
 
 
 const ContactCard = ({ officer, size }) => {
-  console.log(size)
+  // console.log(size)
   return (
     <div className='w-fit rounded-xl bg-white shadow p-4'>
       <div className={classNames('bg-slate-200 rounded-full overflow-hidden m-4  flex items-center justify-center pt-4',
@@ -128,7 +128,7 @@ function Contact() {
         <h1 className='text-2xl text-center text-indigo-700 font-semibold'>Contact Us.</h1>
         <p className='text-center font-normal text-sm'>Get in touch with us</p>
       </div>
-      <div className='flex gap-4 justify-center  text-black my-4'>
+      <div className='flex gap-4 justify-center  text-black my-4 flex-wrap'>
         {NodalOfficers.map((officer, index) => (
           <ContactCard key={index} officer={officer} size={'big'} />
         ))}
@@ -138,7 +138,7 @@ function Contact() {
           <ContactCard key={index} officer={officer} size={'small'} />
         ))}
       </div>
-      <div className='max-w-[1200px] mx-auto'>
+      <div className='max-w-[1300px] mx-auto'>
 
       </div>
     </div>

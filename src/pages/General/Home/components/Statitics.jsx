@@ -22,7 +22,7 @@ function Statitics() {
     ]
   return (
     <div className='bg-blue-950 w-full p-4'>
-        <div className='grid grid-cols-4 gap-2 md:gap-4 max-w-[1200px] mx-auto'>
+        <div className='grid grid-cols-4 gap-2 md:gap-4 max-w-[1300px] mx-auto'>
             {
                 Statitics.map((statitics, index) => (
                     <div key={index} className='text-center md:p-4'>

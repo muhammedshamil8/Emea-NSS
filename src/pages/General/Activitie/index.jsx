@@ -1,58 +1,133 @@
-import React from 'react'
+import { useEffect, useState } from "react";
 import EventCard from './components/EventCard';
+import Banner from './components/Banner';
+import { db } from "@/config/firebase";
+import { getDocs, collection } from "firebase/firestore";
+import dayjs from "dayjs";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 function Activitie() {
-  const events = [
-    {
-      title: 'Event 1',
-      date: '12/12/2021',
-      location: 'Location 1',
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      title: 'Event 2',
-      date: '12/12/2021',
-      location: 'Location 2',
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      title: 'Event 3',
-      date: '12/12/2021',
-      location: 'Location 3',
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      title: 'Event 4',
-      date: '12/12/2021',
-      location: 'Location 4',
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      title: 'Event 5',
-      date: '12/12/2021',
-      location: 'Location 5',
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      title: 'Event 6',
-      date: '12/12/2021',
-      location: 'Location 6',
-      image: 'https://via.placeholder.com/150'
-    }
-  ];
-  return (
-    <div className='min-h-[100vh]'>
-      <h1 className='text-2xl text-center text-indigo-700 font-semibold'>Activite</h1>
+  const [events, setEvents] = useState([]);
+  const [recentEvents, setRecentEvents] = useState([]); // State for recent events
+  const [loading, setLoading] = useState(true);
+  const eventCollectionRef = collection(db, "events");
 
-      <div className='grid grid-cols-3 gap-4 max-w-[1200px] mx-auto'>
-        {
-          events.map((event, index) => (
-            <EventCard key={index} event={event} />
-          ))
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    // nextArrow: <SampleNextArrow color={color} />,
+    // prevArrow: <SamplePrevArrow color={color} />,
+    responsive: [
+      // {
+      //     breakpoint: 1124,
+      //     settings: {
+      //         slidesToShow: 3,
+      //         slidesToScroll: 1,
+      //     }
+      // },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
         }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ],
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
+
+  const getEvents = async () => {
+    setLoading(true);
+    try {
+      // Function to convert Firestore timestamp to JS Date
+      function eventDate(date) {
+        return new Date(date?.seconds * 1000);
+      }
+
+      // Fetch all events
+      const allEventData = await getDocs(eventCollectionRef);
+      const allEvents = allEventData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+
+      // Sort events by date in descending order (latest first)
+      const sortedEvents = allEvents.sort((a, b) => eventDate(b.date) - eventDate(a.date));
+
+      // Get the latest 5 events and check for the 6th event
+      let selectedEvents = sortedEvents.slice(0, 5);
+
+      // If the 6th event has the same date as the 5th event, include it
+      if (sortedEvents.length > 5) {
+        const fifthEventDate = dayjs(eventDate(sortedEvents[4].date));
+        const sixthEventDate = dayjs(eventDate(sortedEvents[5].date));
+        if (fifthEventDate.isSame(sixthEventDate, 'day')) {
+          selectedEvents = sortedEvents.slice(0, 6);
+        }
+      }
+
+      setEvents(sortedEvents); // Set all sorted events
+      setRecentEvents(selectedEvents); // Set the latest 5 or 6 recent events
+    } catch (error) {
+      console.error("Error getting documents: ", error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className='min-h-[100vh] max-w-[1300px] mx-auto py-4 px-2'>
+      <Banner />
+
+      <div className='flex flex-col my-10'>
+        <h1 className='text-2xl text-left text-indigo-700 font-semibold mb-10'>Recent Activities</h1>
+        <div className="slider-container w-full max-w-[1200px] mx-auto relative">
+          {loading ? (
+            <div className="w-full h-96 flex items-center justify-center">
+              <p className="text-2xl text-gray-500">Loading...</p>
+            </div>
+          ) : (
+            <Slider {...settings} className="h-full">
+              {recentEvents.map((event, index) => (
+                <div className="" key={index}>
+                  <EventCard key={index} event={event} />
+                </div>
+              ))}
+            </Slider>
+          )}
+        </div>
+      </div>
+
+      <div className='flex flex-col'>
+        <h1 className='text-2xl text-left text-indigo-700 font-semibold mb-10'>All Activities</h1>
+        {loading ? (
+          <div className="w-full h-96 flex items-center justify-center">
+            <p className="text-2xl text-gray-500">Loading...</p>
+          </div>
+        ) : (
+          <div className='grid gap-4' style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+            {events.map((event, index) => (
+              <EventCard key={index} event={event} />
+            ))}
+          </div>
+        )}
+
       </div>
     </div>
-  )
+  );
 }
 
-export default Activitie
+export default Activitie;
