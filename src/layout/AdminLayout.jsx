@@ -42,7 +42,7 @@ function AdminLayout() {
     <AuthRoleRequire role="admin">
 
       {/* Header Section */}
-      <div className='fixed w-full top-0 '>
+      <div className='fixed w-full top-0 z-50'>
         <header className="bg-blue-600 text-white p-4 flex justify-between items-center ">
           <div className="text-lg font-bold">Admin Panel</div>
           <button
