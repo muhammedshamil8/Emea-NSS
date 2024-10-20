@@ -189,6 +189,7 @@ export default function EventForm({ eventId }) {
   };
 
   return (
+    <section className="p-4 min-h-screen">
     <div className="admin-event-form max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h1 className="text-2xl font-bold mb-4">{eventId ? "Edit Event" : "Create Event"}</h1>
 
@@ -330,5 +331,6 @@ export default function EventForm({ eventId }) {
       )
       }
     </div >
+    </section>
   );
 }

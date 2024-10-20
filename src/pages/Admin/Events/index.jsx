@@ -64,10 +64,10 @@ function SamplePrevArrow(props) {
   const isDisabled = className && className.includes("slick-disabled");
   return (
     <div
-      className={classNames(className, `rounded-xl flex items-center justify-center text-${color}  absolute left-[20px] top-[10px] sm:top-[10px] z-10 custom-arrow `,
+      className={classNames(className, `rounded-xl flex items-center justify-center  text-${color}  absolute left-[20px] top-[10px] sm:top-[10px] z-10 custom-arrow `,
         {
           '!text-gray-500': isDisabled,
-          [`text-${color}`]: !isDisabled
+          [`!text-${color}`]: !isDisabled
         }
       )}
       style={{
@@ -204,7 +204,8 @@ function Event() {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <section className="p-4 min-h-screen">
+    <div className="container mx-auto p-10 mb-10">
       <div className="flex flex-col gap-4 sm:flex-row sm:gap-2 justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Manage Events</h1>
         <div className="flex flex-col gap-4 sm:flex-row">
@@ -228,12 +229,14 @@ function Event() {
               <h5 className="text-gray-600 mb-4">Major events are displayed on the home page of the website.</h5>
               <p className="text-gray-600 mb-4">Total M-Events: {majorEvents.length}</p>
             </div>
-            <Slider {...settings} className="h-full mb-6 !z-20">
+            <Slider {...settings} className="h-full mb-6 !z-20 space-x-4">
               {majorEvents.map((event) => (
                 <div
                   key={event.id}
-                  className="border rounded-lg p-4 shadow-md bg-white"
+                  className="p-4"
                 >
+                  <div className="border rounded-lg p-4 shadow-md bg-white ">
+
                   <div className="flex justify-between items-center">
                     <div className="flex items-center  justify-between w-full gap-2">
                       <label>Event Image</label>
@@ -258,7 +261,7 @@ function Event() {
                     </div>
                   </div>
                   <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
-                  <p className="text-gray-600 mb-4">{event.description}</p>
+                  <p className="text-gray-600 mb-4 truncate">{event.description}</p>
                   <p className="text-gray-600 mb-4">{event.location}</p>
                   <p className="text-gray-600 mb-4">
                     {dayjs(eventDate(event.date)).format('MMMM D, YYYY')} - {dayjs(eventDate(event.date)).format('dddd')}
@@ -310,6 +313,8 @@ function Event() {
 
                   </div>
                 </div>
+                </div>
+
               ))}
             </Slider>
             <div className="">
@@ -386,6 +391,7 @@ function Event() {
         <p className="text-gray-500 text-center">No events available. Please add an event.</p>
       )}
     </div>
+    </section>
   );
 }
 

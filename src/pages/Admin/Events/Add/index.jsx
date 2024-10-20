@@ -45,6 +45,7 @@ import {
 } from "@/components/extension/multi-select";
 import { Trash2, Eye } from "lucide-react";
 import { useParams } from "react-router-dom";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   thumbnail: z
@@ -71,7 +72,7 @@ const formSchema = z.object({
   volunteer_edit_attendance: z.boolean().optional(),
 });
 
-export default function EventForm({  }) {
+export default function EventForm({ }) {
   const eventId = useParams().id;
   const { toast } = useToast();
   const [imageUpload, setImageUpload] = useState(null);
@@ -133,7 +134,7 @@ export default function EventForm({  }) {
           form.setValue("attended_volunteers", eventData.attended_volunteers);
           form.setValue("volunteer_edit_attendance", eventData.volunteer_edit_attendance);
           form.setValue("secret_code", eventData.secret_code);
-          
+
           setPreview(eventData.thumbnail);
           setLoading(false);
         } else {
@@ -356,7 +357,8 @@ export default function EventForm({  }) {
   };
 
   return (
-    <div className="admin-event-form max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <section className="p-4 min-h-screen">
+    <div className="admin-event-form max-w-2xl mx-auto p-10 my-10 bg-white shadow-lg rounded-lg ">
       <h1 className="text-2xl font-bold mb-4">{eventId ? "Edit Event" : "Create Event"}</h1>
 
       {loading ? (
@@ -423,222 +425,225 @@ export default function EventForm({  }) {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input placeholder="Event description" {...field} />
+                    <Textarea className="max-h-[150px] min-h-[140px]" placeholder="Event description" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
 
-            <FormField
+                control={form.control}
+                name="date"
+                render={({ field }) => (
+                  <FormItem >
+                    <FormLabel>Date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant={"outline"}
+                            className={cn(
+                              "w-full pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          disabled={(date) =>
+                            date < new Date("2020-01-01")
+                          }
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
 
-              control={form.control}
-              name="date"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>Date</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-full pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                        >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) =>
-                          date < new Date("2020-01-01")
-                        }
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="location"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Venue</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Event location" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="assigned_volunteers"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Assigned Volunteers</FormLabel>
-                  <FormControl>
-                    <MultiSelector
-                      values={field.value} // Pass the current values from the form state
-                      onValuesChange={(selectedValues) => field.onChange(selectedValues)} // Update form state when values change
-                      loop={false}
-                    >
-                      <MultiSelectorTrigger options={Options}>
-                        <MultiSelectorInput placeholder="Select Volunteers names" />
-                      </MultiSelectorTrigger>
-                      <MultiSelectorContent>
-                        <MultiSelectorList>
-                          {loading ? (
-                            <MultiSelectorItem>
-                              <div className='text-sm flex w-full items-center justify-between'>
-                                <div className='flex flex-col'>
-                                  <span>
-                                    Loading...
-                                  </span>
-                                </div>
-                              </div>
-                            </MultiSelectorItem>
-                          ) : (volunteers && volunteers.map((memb) => (
-                            <MultiSelectorItem key={memb.id} value={memb.id}>
-                              <div className='text-sm flex w-full items-center justify-between'>
-                                <div className='flex flex-col'>
-                                  <span>
-                                    {memb?.name}
-                                  </span>
-                                  <span className='text-[10px]'>
-                                    {memb?.department}
-                                  </span>
-                                </div>
-                                <span className='text-[12px] px-2'>
-                                  ({memb?.nss_roll_no})
-                                </span>
-                              </div>
-                            </MultiSelectorItem>
-                          )))}
-                        </MultiSelectorList>
-                      </MultiSelectorContent>
-                    </MultiSelector>
-                  </FormControl>
-                  {/* <FormDescription>Select the events you have coordinated for.</FormDescription> */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="attended_volunteers"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Attended Volunteers</FormLabel>
-                  <FormControl>
-                    <MultiSelector
-                      values={field.value} // Pass the current values from the form state
-                      onValuesChange={(selectedValues) => field.onChange(selectedValues)} // Update form state when values change
-                      loop={false}
-                    >
-                      <MultiSelectorTrigger options={Options}>
-                        <MultiSelectorInput placeholder="Select Volunteers names" />
-                      </MultiSelectorTrigger>
-                      <MultiSelectorContent>
-                        <MultiSelectorList>
-                          {loading ? (
-                            <MultiSelectorItem>
-                              <div className='text-sm flex w-full items-center justify-between'>
-                                <div className='flex flex-col'>
-                                  <span>
-                                    Loading...
-                                  </span>
-                                </div>
-                              </div>
-                            </MultiSelectorItem>
-                          ) : (volunteers && volunteers.map((memb) => (
-                            <MultiSelectorItem key={memb.id} value={memb.id}>
-                              <div className='text-sm flex w-full items-center justify-between'>
-                                <div className='flex flex-col'>
-                                  <span>
-                                    {memb?.name}
-                                  </span>
-                                  <span className='text-[10px]'>
-                                    {memb?.department}
-                                  </span>
-                                </div>
-                                <span className='text-[12px] px-2'>
-                                  ({memb?.nss_roll_no})
-                                </span>
-                              </div>
-                            </MultiSelectorItem>
-                          )))}
-                        </MultiSelectorList>
-                      </MultiSelectorContent>
-                    </MultiSelector>
-                  </FormControl>
-                  {/* <FormDescription>Select the events you have coordinated for.</FormDescription> */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormItem >
-              <FormLabel>Attendance Marking</FormLabel>
               <FormField
                 control={form.control}
-                name="volunteer_edit_attendance"
+                name="location"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-center justify-start space-x-3 rounded-md border p-4 py-2">
+                  <FormItem>
+                    <FormLabel>Venue</FormLabel>
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Input placeholder="Event location" {...field} />
                     </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>
-                        Allow assigned volunteers to edit attendance
-                      </FormLabel>
-                      <FormDescription>
-                        If enabled, volunteers can mark their attendance for the event.
-                      </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="assigned_volunteers"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Assigned Volunteers</FormLabel>
+                    <FormControl>
+                      <MultiSelector
+                        values={field.value} // Pass the current values from the form state
+                        onValuesChange={(selectedValues) => field.onChange(selectedValues)} // Update form state when values change
+                        loop={false}
+                      >
+                        <MultiSelectorTrigger options={Options}>
+                          <MultiSelectorInput placeholder="Select Volunteers names" />
+                        </MultiSelectorTrigger>
+                        <MultiSelectorContent>
+                          <MultiSelectorList>
+                            {loading ? (
+                              <MultiSelectorItem>
+                                <div className='text-sm flex w-full items-center justify-between'>
+                                  <div className='flex flex-col'>
+                                    <span>
+                                      Loading...
+                                    </span>
+                                  </div>
+                                </div>
+                              </MultiSelectorItem>
+                            ) : (volunteers && volunteers.map((memb) => (
+                              <MultiSelectorItem key={memb.id} value={memb.id}>
+                                <div className='text-sm flex w-full items-center justify-between'>
+                                  <div className='flex flex-col'>
+                                    <span>
+                                      {memb?.name}
+                                    </span>
+                                    <span className='text-[10px]'>
+                                      {memb?.department}
+                                    </span>
+                                  </div>
+                                  <span className='text-[12px] px-2'>
+                                    ({memb?.nss_roll_no})
+                                  </span>
+                                </div>
+                              </MultiSelectorItem>
+                            )))}
+                          </MultiSelectorList>
+                        </MultiSelectorContent>
+                      </MultiSelector>
+                    </FormControl>
+                    {/* <FormDescription>Select the events you have coordinated for.</FormDescription> */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="attended_volunteers"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Attended Volunteers</FormLabel>
+                    <FormControl>
+                      <MultiSelector
+                        values={field.value} // Pass the current values from the form state
+                        onValuesChange={(selectedValues) => field.onChange(selectedValues)} // Update form state when values change
+                        loop={false}
+                      >
+                        <MultiSelectorTrigger options={Options}>
+                          <MultiSelectorInput placeholder="Select Volunteers names" />
+                        </MultiSelectorTrigger>
+                        <MultiSelectorContent>
+                          <MultiSelectorList>
+                            {loading ? (
+                              <MultiSelectorItem>
+                                <div className='text-sm flex w-full items-center justify-between'>
+                                  <div className='flex flex-col'>
+                                    <span>
+                                      Loading...
+                                    </span>
+                                  </div>
+                                </div>
+                              </MultiSelectorItem>
+                            ) : (volunteers && volunteers.map((memb) => (
+                              <MultiSelectorItem key={memb.id} value={memb.id}>
+                                <div className='text-sm flex w-full items-center justify-between'>
+                                  <div className='flex flex-col'>
+                                    <span>
+                                      {memb?.name}
+                                    </span>
+                                    <span className='text-[10px]'>
+                                      {memb?.department}
+                                    </span>
+                                  </div>
+                                  <span className='text-[12px] px-2'>
+                                    ({memb?.nss_roll_no})
+                                  </span>
+                                </div>
+                              </MultiSelectorItem>
+                            )))}
+                          </MultiSelectorList>
+                        </MultiSelectorContent>
+                      </MultiSelector>
+                    </FormControl>
+                    {/* <FormDescription>Select the events you have coordinated for.</FormDescription> */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormItem >
+                <FormLabel>Attendance Marking</FormLabel>
+                <FormField
+                  control={form.control}
+                  name="volunteer_edit_attendance"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-center justify-start space-x-3 rounded-md border p-4 py-2">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel>
+                          Allow assigned volunteers to edit attendance
+                        </FormLabel>
+                        <FormDescription>
+                          If enabled, volunteers can mark their attendance for the event.
+                        </FormDescription>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </FormItem>
+
+              <FormField
+                control={form.control}
+                name="secret_code"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Secret Code</FormLabel>
+                    <FormControl>
+                      <Input disabled={true} {...field} readOnly />
+                    </FormControl>
+                    <FormMessage />
+                    <div className="flex space-x-2 mt-2">
+                      <Button type="button" onClick={handleCopyCode}>Copy</Button>
+                      <Button type="button" onClick={handleGenerateCode}>Refresh</Button>
                     </div>
                   </FormItem>
                 )}
               />
-            </FormItem>
-
-            <FormField
-              control={form.control}
-              name="secret_code"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Secret Code</FormLabel>
-                  <FormControl>
-                    <Input disabled={true} {...field} readOnly />
-                  </FormControl>
-                  <FormMessage />
-                  <div className="flex space-x-2 mt-2">
-                    <Button type="button" onClick={handleCopyCode}>Copy</Button>
-                    <Button type="button" onClick={handleGenerateCode}>Refresh</Button>
-                  </div>
-                </FormItem>
-              )}
-            />
-
+            </div>
             <Button type="submit" className="w-full" disabled={submitloading}>
               {submitloading ? (<Loader className=" animate-spin" />) : (eventId ? "Update Event" : "Create Event")}
               { }
@@ -648,5 +653,6 @@ export default function EventForm({  }) {
       )
       }
     </div >
+    </section>
   );
 }
