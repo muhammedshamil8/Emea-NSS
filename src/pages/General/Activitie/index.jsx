@@ -7,10 +7,61 @@ import dayjs from "dayjs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import classNames from "classnames";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+function SampleNextArrow(props) {
+  const { className, style, onClick, color } = props;
+  const isDisabled = className && className.includes("slick-disabled");
+  return (
+    <div
+      className={classNames(className, `rounded-xl flex items-center justify-center text-${color}  absolute right-[20px] top-[10px] sm:top-[10px] z-10 custom-arrow`,
+        {
+          '!text-gray-500': isDisabled,
+          [`!text-${color}`]: !isDisabled
+        })}
+      style={{
+        ...style,
+        display: "block",
+        background: "",
+        fontSize: "40px",
+        lineHeight: "1",
+      }}
+      onClick={onClick}
+    >
+      <ChevronRight size={40} />
+    </div>
+  );
+}
+function SamplePrevArrow(props) {
+  const { className, style, onClick, color } = props;
+  console.log('color:', color);
+  const isDisabled = className && className.includes("slick-disabled");
+  return (
+    <div
+      className={classNames(className, `rounded-xl flex items-center justify-center  text-${color}  absolute left-[20px] top-[10px] sm:top-[10px] z-10 custom-arrow `,
+        {
+          '!text-gray-500': isDisabled,
+          [`!text-${color}`]: !isDisabled
+        }
+      )}
+      style={{
+        ...style,
+        display: "block",
+        background: "",
+        fontSize: "40px",
+        lineHeight: "1",
+      }}
+      onClick={onClick}
+    >
+      <ChevronLeft size={40} />
+    </div >
+  );
+}
 
 function Activitie() {
   const [events, setEvents] = useState([]);
-  const [recentEvents, setRecentEvents] = useState([]); // State for recent events
+  const [recentEvents, setRecentEvents] = useState([]); 
   const [loading, setLoading] = useState(true);
   const eventCollectionRef = collection(db, "events");
 
@@ -18,18 +69,18 @@ function Activitie() {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
-    // nextArrow: <SampleNextArrow color={color} />,
-    // prevArrow: <SamplePrevArrow color={color} />,
+    nextArrow: <SampleNextArrow color={'black'} />,
+    prevArrow: <SamplePrevArrow color={'black'} />,
     responsive: [
-      // {
-      //     breakpoint: 1124,
-      //     settings: {
-      //         slidesToShow: 3,
-      //         slidesToScroll: 1,
-      //     }
-      // },
+      {
+          breakpoint: 1124,
+          settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+          }
+      },
       {
         breakpoint: 900,
         settings: {
@@ -38,9 +89,10 @@ function Activitie() {
         }
       },
       {
-        breakpoint: 550,
+        breakpoint: 600,
         settings: {
           slidesToShow: 1,
+          padding: 10,
           slidesToScroll: 1,
         }
       }
@@ -94,7 +146,7 @@ function Activitie() {
 
       <div className='flex flex-col my-10'>
         <h1 className='text-2xl text-left text-indigo-700 font-semibold mb-10'>Recent Activities</h1>
-        <div className="slider-container w-full max-w-[1200px] mx-auto relative">
+        <div className="slider-container p-2 mx-auto sm:max-0 max-w-[90%] md:max-w-full w-full relative">
           {loading ? (
             <div className="w-full h-96 flex items-center justify-center">
               <p className="text-2xl text-gray-500">Loading...</p>
@@ -102,7 +154,7 @@ function Activitie() {
           ) : (
             <Slider {...settings} className="h-full">
               {recentEvents.map((event, index) => (
-                <div className="" key={index}>
+                <div className="flex items-start" key={index}>
                   <EventCard key={index} event={event} />
                 </div>
               ))}
@@ -118,7 +170,7 @@ function Activitie() {
             <p className="text-2xl text-gray-500">Loading...</p>
           </div>
         ) : (
-          <div className='grid gap-4' style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+          <div className='grid gap-4 mb-20' style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
             {events.map((event, index) => (
               <EventCard key={index} event={event} />
             ))}
