@@ -20,13 +20,13 @@ export function GridGallery({ galleryItems, isLoading }) {
 
   return (
     <div className="columns-2 md:columns-4 gap-4 space-y-4">
-      {galleryItems.map((item) => (
-        <div key={item.id} className="break-inside-avoid">
+      {galleryItems.map((item,index) => (
+        <div key={index} className="break-inside-avoid">
           {loading && loadingCard()}
           <img
             className="w-full h-auto rounded-lg object-cover"
-            src={item.image}
-            alt={item.title}
+            src={item}
+            alt={'gallery-item'}
             onLoad={() => setLoading(false)}
           />
           {/* <h2 className="text-sm text-center text-gray-600 mt-2">{item.title}</h2> */}
