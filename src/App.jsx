@@ -5,8 +5,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './assets/styles/index.css'
+import './assets/styles/button.css'
 
-import { Home, About, Activitie, Gallery, Report, Login } from "./pages/General";
+import { Home, About, Activitie, Gallery, Report, Login, SingleEvent } from "./pages/General";
 import { GuestLayout, AdminLayout, VolunteerLayout } from "./layout";
 import { AdminDashboard, AdminBanners, AdminEvents, AdminReports, AdminVolunteers, AdminEventForm, AdminVolunteerForm, AdminMajorEvent } from "./pages/Admin";
 import { VolunteerDashboard, VolunteerEvents, VolunteerProfile, VolunteerEventForm } from "./pages/Volunteer";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/activities", element: <Activitie /> },
       { path: "/gallery", element: <Gallery /> },
       { path: "/reports", element: <Report /> },
+      { path: "/activitie/:id", element: <SingleEvent /> },
       { path: "/contact", element: <Navigate to="/#contact" /> },
       { path: "/login", element: <Login /> },
     ],
