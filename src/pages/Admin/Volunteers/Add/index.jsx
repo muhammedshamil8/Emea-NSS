@@ -187,198 +187,203 @@ export default function VolunteerForm({ userId }) {
   );
 
   return (
-    <div className="admin-volunteer-form max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">{userId ? "Edit Volunteer" : "Create Volunteer"}</h1>
+    <section className="p-4 min-h-screen">
+      <div className="admin-volunteer-form max-w-[900px] mx-auto p-6 bg-white shadow-lg rounded-lg ">
+        <h1 className="text-2xl font-bold mb-4">{userId ? "Edit Volunteer" : "Create Volunteer"}</h1>
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Volunteer name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="admission_number"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Admission Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Admission Number" className="uppercase"  {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="Volunteer email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Volunteer name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="admission_number"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Admission Number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Admission Number" className="uppercase"  {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                <FormField
+                  control={form.control}
+                  name="phone_number"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Volunteer phone number" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input type="email" placeholder="Volunteer email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="phone_number"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone Number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Volunteer phone number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="Year_Joined"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Year Joined</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select the year joined" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {years.map((year) => (
-                        <SelectItem key={year.value} value={year.value}>
-                          {year.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="department"
-              render={({ field }) => (
-                <FormItem >
-                  <FormLabel>Department</FormLabel>
-                  <FormControl>
-                    <Select
-                      onValueChange={field.onChange}
-                      value={field.value}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a department" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>
-                            {/* Search Input */}
-                            <input
-                              type="search"
-                              placeholder="Search departments"
-                              value={searchQuery}
-                              onChange={(e) => setSearchQuery(e.target.value)}
-                              className="w-[90%] mx-auto py-2 outline-none" // Add your styling here
-                              clear={'true'}
-                            />
-                          </SelectLabel>
-
-                          {/* Filtered Department Options */}
-                          {filteredDepartments.map((dept, index) => (
-                            <SelectItem key={index} value={dept.value}>
-                              {dept.value}
+                <FormField
+                  control={form.control}
+                  name="Year_Joined"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Year Joined</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select the year joined" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {years.map((year) => (
+                            <SelectItem key={year.value} value={year.value}>
+                              {year.label}
                             </SelectItem>
                           ))}
-                          {filteredDepartments.length === 0 && (
-                            <SelectItem disabled key={111}>
-                              No departments found
-                            </SelectItem>
-                          )}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <FormField
-              control={form.control}
-              name="dob"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Date of Birth</FormLabel>
-                  <FormControl>
-                    <Input type="date" placeholder="Date of birth"  {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          
-            <FormField
-              control={form.control}
-              name="unit"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Unit</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormField
+                  control={form.control}
+                  name="department"
+                  render={({ field }) => (
+                    <FormItem >
+                      <FormLabel>Department</FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a department" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>
+                                {/* Search Input */}
+                                <input
+                                  type="search"
+                                  placeholder="Search departments"
+                                  value={searchQuery}
+                                  onChange={(e) => setSearchQuery(e.target.value)}
+                                  className="w-[90%] mx-auto py-2 outline-none" // Add your styling here
+                                  clear={'true'}
+                                />
+                              </SelectLabel>
+
+                              {/* Filtered Department Options */}
+                              {filteredDepartments.map((dept, index) => (
+                                <SelectItem key={index} value={dept.value}>
+                                  {dept.value}
+                                </SelectItem>
+                              ))}
+                              {filteredDepartments.length === 0 && (
+                                <SelectItem disabled key={111}>
+                                  No departments found
+                                </SelectItem>
+                              )}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="dob"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Date of Birth</FormLabel>
+                      <FormControl>
+                        <Input type="date" placeholder="Date of birth"  {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="unit"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Unit</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select the Unit" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="104">Unit 104</SelectItem>
+                          <SelectItem value="105">Unit 105</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormField
+                control={form.control}
+                name="roll_no"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Roll Number</FormLabel>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select the Unit" />
-                      </SelectTrigger>
+                      <Input placeholder="Roll number" {...field} />
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="104">Unit 104</SelectItem>
-                      <SelectItem value="105">Unit 105</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="roll_no"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Roll Number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Roll number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button type="submit" className="w-full">{userId ? "Update Volunteer" : "Create Volunteer"}</Button>
-            <div className="h-60"></div>
-          </form>
-        </Form>
-      )}
-    </div>
+              <Button type="submit" className="w-full">{userId ? "Update Volunteer" : "Create Volunteer"}</Button>
+            </form>
+          </Form>
+        )}
+      </div>
+    </section>
   );
 }

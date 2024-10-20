@@ -57,15 +57,15 @@ const Dashboard = () => {
 
 
   return (
-    <div className="p-1">
+    <div className="p-8 min-h-screen">
       {/* <h1 className="text-3xl font-bold mb-6">Volunteer Dashboard</h1> */}
 
-      <section className='flex flex-col md:flex-row-reverse justify- w-full'>
+      <section className='flex flex-col lg:flex-row-reverse justify-center w-full'>
 
-        <div className="mb-6 shadow-lg border p-4 border-gray-200 rounded-lg w-fit md:sticky md:top-10 h-fit mx-auto md:mx-0">
+        <div className="mb-6 shadow-lg border p-4 border-gray-200 rounded-lg w-full max-w-[600px]  lg:w-fit lg:sticky lg:top-10 h-fit mx-auto lg:mx-0">
           <h1 className="text-2xl font-semibold">Attendance Percentage</h1>
           <div className="flex justify-center items-center ">
-            <div className="w-full max-w-xs h-[250px] relative">
+            <div className="w-full max-w-xs h-[250px] relative mx-14 mb-6">
               <div className='top-[44px] left-[44px] absolute border-[18px] h-[162px] !border-gray-200/70 w-[162px] rounded-full z-0'></div>
 
               <RadialBarChart
@@ -105,19 +105,19 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className='flex-grow w-full'>
+        <div className='flex-grow w-full p-6'>
 
-          <div className='flex justify-between items-center mb-6'>
+          <div className='flex justify-between items-center mb-6 flex-col sm:flex-row'>
             <h2 className="text-2xl font-semibold mb-4">Events List</h2>
             <div className='flex items-center space-x-2 px-4'>
-              <div className='relative group select-none '>
+              <div className='relative group select-none flex items-center justify-center'>
                 <span className='w-4 h-4 bg-green-300 inline-block'></span>
                 <span className='absolute bottom-full mb-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 '>
                   Attended
                 </span>
               </div>
               <p className='cursor-default'>Attended</p>
-              <div className='relative group'>
+              <div className='relative group flex items-center justify-center'>
                 <span className='w-4 h-4 bg-red-300 inline-block'></span>
                 <span className='absolute bottom-full mb-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2'>
                   not attended
@@ -131,13 +131,13 @@ const Dashboard = () => {
             <p className='text-gray-600'>Attended Events: {attendedEvents}</p>
           </div>
 
-          <ul className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+          <ul className="flex gap-10 flex-wrap items-center justify-around" >
             {loading ? (
               <p>Loading...</p>
             ) : (events && (events.map(event => (
               <Card
                 key={event.id}
-                className={`flex h-full flex-col shadow-lg border border-gray-300 rounded-lg p-4 max-w-[300px] min-w-[300px] mx-auto ${event.attended ? 'bg-green-50' : 'bg-red-50'
+                className={`flex h-full flex-col shadow-lg border border-gray-300 rounded-lg p-4 max-w-[300px] min-w-[200px] lg:min-w-[300px]  ${event.attended ? 'bg-green-50' : 'bg-red-50'
                   }`}
               >
                 <CardHeader>

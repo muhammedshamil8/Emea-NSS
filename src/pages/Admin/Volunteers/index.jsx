@@ -44,7 +44,7 @@ const Volunteer = () => {
   );
 
   return (
-    <div className="p-6">
+    <section className="p-4 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Volunteer List</h1>
 
       <div className="mb-4 flex justify-between items-center flex-col gap-4 sm:flex-row-reverse">
@@ -65,7 +65,7 @@ const Volunteer = () => {
           </div>
         ) : (
           filteredVolunteers.map(volunteer => (
-            <div key={volunteer.id} className="border p-4 rounded-lg shadow-md">
+            <div key={volunteer.id} className="border p-4 rounded-lg shadow-md bg-white">
               <h2 className="text-lg font-semibold">{volunteer.name}</h2>
               <p>Email: {volunteer.email}</p>
               <p>Phone: {volunteer.phone_number}</p>
@@ -80,7 +80,7 @@ const Volunteer = () => {
         )}
         {!loading && filteredVolunteers.length === 0 && <p className="text-center text-gray-500">No volunteers found.</p>}
       </div>
-    </div>
+    </section>
   );
 };
 
