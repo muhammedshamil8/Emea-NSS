@@ -1,0 +1,38 @@
+.buttonz {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+    color: #FF4C5A;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #FF4C5A;
+  }
+  
+  .buttonz:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+    outline: 2px solid #FF4C5A;
+    box-shadow: 4px 5px 17px -4px #FF4C5A;
+  }
+  
+  .buttonz::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #332c6f49;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+  }
+  
+  .buttonz:hover::before {
+    width: 250%;
+  }

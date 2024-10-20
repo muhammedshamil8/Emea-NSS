@@ -37,6 +37,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { db, storage } from '@/config/firebase';
 import { collection, addDoc, getDocs, deleteDoc, getDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import classNames from "classnames";
 
 const formSchema = z.object({
   banner_img: z
@@ -167,144 +168,149 @@ export default function Banner() {
   };
 
   return (
-    <div className="admin-banner-page max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg" ref={parent}>
-      <div className="flex justify-between items-center my-4 flex-col sm:flex-row">
-        <h1 className="text-2xl font-bold mb-4">Manage Banners</h1>
-        <Button onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Close Form' : 'Add Banner'}
-        </Button>
-      </div>
+    <section className="p-4 min-h-screen">
+      <div className="admin-banner-page max-w-[900px] mx-auto p-10 my-10 bg-white shadow-lg rounded-lg " ref={parent}>
+        <div className="flex justify-between items-center my-4 flex-col sm:flex-row">
+          <h1 className="text-2xl font-bold mb-4">Manage Banners</h1>
+          <Button onClick={() => setShowForm(!showForm)}>
+            {showForm ? 'Close Form' : 'Add Banner'}
+          </Button>
+        </div>
 
-      {showForm && (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="border-dashed border-2 border-gray-400 p-8 flex items-center justify-center cursor-pointer w-[80%] sm:w-[60%] mx-auto" onClick={() => document.getElementById('file-input').click()}>
-              <span className="text-gray-500 text-lg">+ Upload Banner Image</span>
-            </div>
-            <input
-              type="file"
-              accept="image/png, image/jpeg, image/jpg"
-              onChange={handleImageChange}
-              id="file-input"
-              className="hidden"
-            />
-            {preview && (
-              <div className="flex items-center mt-2 flex-col justify-center gap-2">
-                <img src={preview} alt="Preview" className="max-w-[120px] max-h-[120px] border p-2 rounded-xl" />
-                <div>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline">
-                        <Eye size={16} />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Image Preview</DialogTitle>
-                        <DialogDescription>
-                          <img src={preview} alt="Preview" className="w-full" />
-                        </DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
-                  <Button onClick={() => setPreview(null)} className="ml-2" variant="destructive">
-                    <Trash2 size={16} />
-                  </Button>
-                </div>
+        {showForm && (
+          <Form {...form} >
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" >
+              <div className={classNames("border-dashed border-2 border-gray-400 p-8 flex items-center justify-center cursor-pointer w-[80%] sm:w-[60%] mx-auto",
+                {
+                  "hidden": preview,
+                })} onClick={() => document.getElementById('file-input').click()}>
+                <span className="text-gray-500 text-lg">+ Upload Banner Image</span>
               </div>
-            )}
-
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Banner Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Banner name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full">Submit</Button>
-          </form>
-        </Form>
-      )}
-
-      <div className="banner-list mt-8">
-        <h2 className="text-xl font-semibold">Existing Banners</h2>
-        <ul>
-          {loading ? (
-            <div className="flex justify-center items-center h-48" >
-              <Loader className="animate-spin mx-2" /> Loading...
-            </div>
-          ) : (
-
-            bannerList.map((banner, index) => (
-              <li key={index} className="flex justify-between items-center border-b py-2">
-                <img src={banner.banner_url} alt="Banner" className="w-32 h-auto rounded" />
-                <p>{banner.name}</p>
-                <div className="flex gap-2 flex-col p-1 sm:flex-row">
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline">
-                        <Eye size={16} />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Banner Preview</DialogTitle>
-                        <DialogDescription>
-                          <p>{banner.name}</p>
-                          <img src={banner.banner_url} alt="Banner" className="w-full" />
-                        </DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        variant="destructive"
-                        className="flex items-center"
-                      >
-                        <Trash2 className="" /> 
-                      </Button>
-                    </AlertDialogTrigger>
-
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Are you sure you want to delete this event?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This action cannot be undone. Deleting this event will remove all related data from our servers.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-
-                      <AlertDialogFooter>
-                        <AlertDialogCancel asChild>
-                          <Button variant="outline">Cancel</Button>
-                        </AlertDialogCancel>
-
-                        <AlertDialogAction asChild>
-                          <Button
-                            variant="destructive"
-                            onClick={() => deleteBanner(banner.id, banner.banner_url)}
-                          >
-                            Confirm Delete
-                          </Button>
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-
+              <input
+                type="file"
+                accept="image/png, image/jpeg, image/jpg"
+                onChange={handleImageChange}
+                id="file-input"
+                className="hidden"
+              />
+              {preview && (
+                <div className="flex items-center mt-2 flex-col justify-center gap-2">
+                  <img src={preview} alt="Preview" className="max-w-[120px] max-h-[120px] border p-2 rounded-xl" />
+                  <div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">
+                          <Eye size={16} />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Image Preview</DialogTitle>
+                          <DialogDescription>
+                            <img src={preview} alt="Preview" className="w-full" />
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                    <Button onClick={() => setPreview(null)} className="ml-2" variant="destructive">
+                      <Trash2 size={16} />
+                    </Button>
+                  </div>
                 </div>
-              </li>
-            )))}
-          {!loading && bannerList.length === 0 && (
-            <li className="text-gray-500 text-sm mt-2 text-center">No banners found.</li>
-          )}
-        </ul>
+              )}
+
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Banner Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Banner name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">Submit</Button>
+            </form>
+          </Form>
+        )}
+
+        <div className="banner-list mt-8">
+          <h2 className="text-xl font-semibold">Existing Banners</h2>
+          <ul>
+            {loading ? (
+              <div className="flex justify-center items-center h-48" >
+                <Loader className="animate-spin mx-2" /> Loading...
+              </div>
+            ) : (
+
+              bannerList.map((banner, index) => (
+                <li key={index} className="flex justify-between items-center border-b py-2">
+                  <img src={banner.banner_url} alt="Banner" className="w-32 h-auto rounded" />
+                  <p>{banner.name}</p>
+                  <div className="flex gap-2 flex-col p-1 sm:flex-row">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">
+                          <Eye size={16} />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Banner Preview</DialogTitle>
+                          <DialogDescription>
+                            <p>{banner.name}</p>
+                            <img src={banner.banner_url} alt="Banner" className="w-full" />
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="destructive"
+                          className="flex items-center"
+                        >
+                          <Trash2 className="" />
+                        </Button>
+                      </AlertDialogTrigger>
+
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you sure you want to delete this event?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. Deleting this event will remove all related data from our servers.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+
+                        <AlertDialogFooter>
+                          <AlertDialogCancel asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </AlertDialogCancel>
+
+                          <AlertDialogAction asChild>
+                            <Button
+                              variant="destructive"
+                              onClick={() => deleteBanner(banner.id, banner.banner_url)}
+                            >
+                              Confirm Delete
+                            </Button>
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+
+                  </div>
+                </li>
+              )))}
+            {!loading && bannerList.length === 0 && (
+              <li className="text-gray-500 text-sm mt-2 text-center">No banners found.</li>
+            )}
+          </ul>
+        </div >
       </div >
-    </div >
+    </section>
   );
 }

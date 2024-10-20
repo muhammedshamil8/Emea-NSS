@@ -90,6 +90,28 @@ const NodalOfficers = [
 
 ];
 
+const techTeam = [
+  {
+    image: 'https://i.pravatar.cc/150?img=2',
+    name: 'Zamil',
+    position: 'Web Developer',
+    social: {
+      phone: '1234567890',
+      email: 'zamil007@gmail.com',
+      instagram: 'https://www.instagram.com/',
+    }
+  },
+  {
+    image: 'https://i.pravatar.cc/150?img=3',
+    name: 'Dayyan ali',
+    position: 'Web Designer',
+    social: {
+      phone: '1234567890',
+      email: 'dayyanali@gmail.com',
+      instagram: 'https://www.instagram.com/',
+    }
+  },
+];
 
 const ContactCard = ({ officer, size }) => {
   // console.log(size)
@@ -123,7 +145,7 @@ const ContactCard = ({ officer, size }) => {
 function Contact() {
 
   return (
-    <div id='contact' className='bg-slate-200  py-4 w-full my-10'>
+    <div id='contact' className='bg-slate-200  py-8 w-full my-10'>
       <div className='mb-6'>
         <h1 className='text-2xl text-center text-indigo-700 font-semibold'>Contact Us.</h1>
         <p className='text-center font-normal text-sm'>Get in touch with us</p>

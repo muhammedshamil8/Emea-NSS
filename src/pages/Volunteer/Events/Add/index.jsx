@@ -44,6 +44,7 @@ import {
 import { Trash2, Eye } from "lucide-react";
 import { useParams } from "react-router-dom";
 import classNames from "classnames";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   thumbnail: z
@@ -295,7 +296,8 @@ export default function EventForm({ }) {
   };
 
   return (
-    <div className="admin-event-form max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="p-8 min-h-screen">
+    <div className="admin-event-form max-w-[900px] my-10 mx-auto p-10 bg-white shadow-lg rounded-lg">
       <h1 className="text-2xl font-bold mb-4">{eventId ? "Edit Event" : "Create Event"}</h1>
 
       {loading ? (
@@ -303,45 +305,59 @@ export default function EventForm({ }) {
       ) : (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className={classNames('border-dashed border-2 border-gray-400 p-8 flex items-center justify-center cursor-pointer',
-              { hidden: !isAllowed }
-            )} onClick={() => document.getElementById('file-input').click()}>
-              <span className="text-gray-500 text-lg">+ Upload Thumbnail Image</span>
-            </div>
-            <input
-              type="file"
-              accept="image/png, image/jpeg, image/jpg"
-              onChange={handleImageChange}
-              id="file-input"
-              className="hidden"
-
-            />
-            {preview && (
-              <div className="flex items-center mt-2 flex-col justify-center gap-2">
-                <img src={preview} alt="Preview" className="max-w-[120px] max-h-[120px] border p-2 rounded-xl" />
-                <div>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline">
-                        <Eye size={16} />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Image Preview</DialogTitle>
-                        <DialogDescription>
-                          <img src={preview} alt="Preview" className="w-full" />
-                        </DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
-                  <Button onClick={() => setPreview(null)} className={classNames('ml-2', { 'hidden': !isAllowed })} variant="destructive">
-                    <Trash2 size={16} />
-                  </Button>
-                </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className={classNames('border-dashed border-2 border-gray-400 p-8 flex items-center justify-center cursor-pointer',
+                { hidden: !isAllowed }
+              )} onClick={() => document.getElementById('file-input').click()}>
+                <span className="text-gray-500 text-lg">+ Upload Thumbnail Image</span>
               </div>
-            )}
+              <input
+                type="file"
+                accept="image/png, image/jpeg, image/jpg"
+                onChange={handleImageChange}
+                id="file-input"
+                className="hidden"
 
+              />
+              {preview && (
+                <div className="flex items-center mt-2 flex-col justify-center gap-2">
+                  <img src={preview} alt="Preview" className="max-w-[120px] max-h-[120px] border p-2 rounded-xl" />
+                  <div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">
+                          <Eye size={16} />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Image Preview</DialogTitle>
+                          <DialogDescription>
+                            <img src={preview} alt="Preview" className="w-full" />
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                    <Button onClick={() => setPreview(null)} className={classNames('ml-2', { 'hidden': !isAllowed })} variant="destructive">
+                      <Trash2 size={16} />
+                    </Button>
+                  </div>
+                </div>
+              )}
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Textarea className="max-h-[150px] min-h-[140px]" disabled={!isAllowed} placeholder="Event description" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="title"
@@ -356,79 +372,69 @@ export default function EventForm({ }) {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input disabled={!isAllowed} placeholder="Event description" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
-            <FormField
+            <div className="grid grid-cols-2 gap-4">
 
-              control={form.control}
-              name="date"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>Date</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          disabled={!isAllowed}
-                          variant={"outline"}
-                          className={cn(
-                            "w-full pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                        >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) =>
-                          date < new Date("2020-01-01")
-                        }
-                        initialFocus
+              <FormField
 
-                      />
-                    </PopoverContent>
-                  </Popover>
+                control={form.control}
+                name="date"
+                render={({ field }) => (
+                  <FormItem >
+                    <FormLabel>Date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            disabled={!isAllowed}
+                            variant={"outline"}
+                            className={cn(
+                              "w-full pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          disabled={(date) =>
+                            date < new Date("2020-01-01")
+                          }
+                          initialFocus
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                        />
+                      </PopoverContent>
+                    </Popover>
 
-            <FormField
-              control={form.control}
-              name="location"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Location</FormLabel>
-                  <FormControl>
-                    <Input disabled={!isAllowed} placeholder="Event location" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Location</FormLabel>
+                    <FormControl>
+                      <Input disabled={!isAllowed} placeholder="Event location" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}
@@ -508,5 +514,6 @@ export default function EventForm({ }) {
       )
       }
     </div >
+    </div>
   );
 }

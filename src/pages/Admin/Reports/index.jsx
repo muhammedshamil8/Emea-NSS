@@ -36,6 +36,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { db } from "@/config/firebase";
 import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, Timestamp } from "firebase/firestore";
 import dayjs from 'dayjs';
+import { Textarea } from "@/components/ui/textarea";
 
 
 const formSchema = z.object({
@@ -111,7 +112,8 @@ export default function Reports() {
   };
 
   return (
-    <div className="admin-reports-page max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg" ref={parent}>
+    <section className="p-4 min-h-screen">
+    <div className="admin-reports-page max-w-[900px] mx-auto p-10 my-10 bg-white shadow-lg rounded-lg" ref={parent}>
       <div className="flex justify-between items-center my-4">
         <h1 className="text-2xl font-bold mb-4">Manage Reports</h1>
         <Button onClick={() => setShowForm(!showForm)}>
@@ -155,7 +157,7 @@ export default function Reports() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input placeholder="Description" {...field} />
+                    <Textarea className="max-h-[150px] min-h-[140px]" placeholder="Description" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -243,5 +245,6 @@ export default function Reports() {
         </ul>
       </div>
     </div>
+    </section>
   );
 }

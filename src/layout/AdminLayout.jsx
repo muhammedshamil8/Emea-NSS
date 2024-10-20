@@ -73,12 +73,12 @@ function AdminLayout() {
       </div>
 
       {/* Main Content Area */}
-      <main className="p-4 pb-[80px] md:pb-0 h-full mt-[80px] md:mt-[165px] overflow-auto">
+      <main className=" pb-[80px] md:pb-0 h-full mt-[70px] md:mt-[145px] overflow-auto bg-slate-50">
         <Outlet />
       </main>
 
       {/* Bottom Navigation for mobile devices */}
-      <nav className="fixed bottom-0 w-full bg-blue-600 text-white md:hidden">
+      <nav className="fixed bottom-0 w-full bg-blue-600 text-white md:hidden ">
         <ul className="flex justify-around p-2">
           {navLinks.map((navLink, index) => (
             <li key={index} className={classNames('hover:bg-blue-700 p-2 rounded-lg',

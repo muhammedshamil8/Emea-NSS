@@ -92,10 +92,10 @@ const EmblaCarousel = (props) => {
       <div className="embla__viewport rounded-[30px]" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((slide, index) => (
-            <div className="embla__slide" key={index}>
+            <div className="embla__slide " key={index}>
               <img
-                className="embla__slide__img"
-                src={slide}
+                className="embla__slide__img border"
+                src={slide?.thumbnail}
                 alt="Your alt text"
               />
               {/* {import.meta.env.VITE_IMAGE_URL + slide} */}

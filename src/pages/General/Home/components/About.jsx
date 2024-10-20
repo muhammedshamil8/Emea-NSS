@@ -19,7 +19,7 @@ function About() {
             <p className='md:max-w-[500px]'>
             The National Service Scheme (NSS), a scheme by the Government of India's Ministry of Youth Affairs & Sports, engages students from schools to universities in voluntary community service. Launched in 1969, NSS has grown to involve 657 universities and 51 +2 councils, benefiting over 7.4 crore students nationwide. Its primary goal is to develop student personality and character through service, promoting 'Education through Service'.
             </p>
-            <button className='border border-red-500 text-red-500 px-6 md:px-8 py-1 rounded-3xl md:rounded-md w-fit' onClick={handleClick}>Know More</button>
+            <button className='buttonz max-w-fit' onClick={handleClick}>Know More</button>
           </div>
        </div>
     </div>

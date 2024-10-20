@@ -7,8 +7,8 @@ import dayjs from 'dayjs';
 const ReportCard = ({ report }) => {
 
   return (
-    <div className="bg-white shadow-md rounded-xl p-4 mb-6">
-      <div className="bg-gray-200 rounded-xl h-32 mb-4 overflow-hidden p-2">
+    <div className="bg-white shadow-md rounded-xl p-4 mb-6 min-h-[300px] flex flex-col h-full justify-around">
+      <div className="bg-gray-200 rounded-xl  mb-4 overflow-hidden p-3 h-full max-h-[160px]">
         <img
           src={NssImg}               // The source of the image
           alt={report.title}         // Alternative text for the image (for accessibility)
@@ -16,7 +16,7 @@ const ReportCard = ({ report }) => {
         />
       </div>
 
-      <div className="flex justify-between items-start flex-col">
+      <div className="flex justify-between items-start flex-col ">
         <h1 className="text-lg font-semibold text-gray-800">{report.title}</h1>
         <p className="text-sm text-gray-500">{report.description}</p>
         <p className="text-gray-500 text-sm">
@@ -27,7 +27,8 @@ const ReportCard = ({ report }) => {
               : "Unknown Date"}
         </p>
       </div>
-      <button className="bg-indigo-700 text-white rounded-md px-4 py-1 mt-4 text-sm hover:bg-indigo-500"> <a
+      <div className='flex  items-end '>
+      <button className="bg-indigo-700 text-white rounded-md px-4 py-1.5 mt-4 text-sm hover:bg-indigo-500"> <a
         href={report.doc_link}
         target="_blank"
         rel="noopener noreferrer"
@@ -35,6 +36,8 @@ const ReportCard = ({ report }) => {
       >
         View Report
       </a></button>
+      </div>
+
     </div>
   );
 };
@@ -69,7 +72,7 @@ function Report() {
   return (
     <div className="min-h-[100vh] bg-gray-100 py-8">
       <h1 className="text-3xl text-center text-indigo-700 font-semibold mb-8">Reports</h1>
-      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 p-2">
         {loading ? (
           <p className="text-gray-500 text-center">Loading...</p>
         ) : (
