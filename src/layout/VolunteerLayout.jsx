@@ -41,7 +41,7 @@ function VolunteerLayout() {
       <header className="bg-green-600 text-white p-4 flex justify-between items-center z-50">
         <div className="text-lg font-bold">Volunteer Panel</div>
         <div className="flex items-center space-x-4">
-          <span>{user?.displayName}</span>
+          <span className='hidden md:block'>{user?.displayName}</span>
           <button onClick={handleSignOut} className="flex items-center bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg">
             <LogOut className="mr-2" size={20} />
             Sign Out
@@ -64,7 +64,7 @@ function VolunteerLayout() {
         </ul>
       </nav>
 
-      <main className="p-4 h-full mb-20 md:mb-0">
+      <main className="h-full mb-20 md:mb-0 bg-slate-50">
         <Outlet context={{ myData }} /> {/* Pass user data to Outlet */}
       </main>
 
