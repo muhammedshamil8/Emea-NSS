@@ -11,7 +11,7 @@ function Home() {
       <Report />
       <Statitics />
       </div>
-     <div className='max-w-full'>
+     <div className='w-full'>
      <NodalOfficer />
      </div>
       <Contact />

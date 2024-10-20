@@ -38,8 +38,8 @@ const EmblaCarousel = (props) => {
                         <div className="embla__slide2 relative" key={index}>
                             <img
                                 className="embla__slide__img2"
-                                src={slide.src}
-                                alt={slide.alt}
+                                src={slide.banner_url}
+                                alt={slide.name}
                             />
 
                             <div className="z-30 absolute bottom-8 md:bottom-16 left-0 right-0 mx-auto max-w-full flex justify-center px-4">
@@ -64,7 +64,7 @@ const EmblaCarousel = (props) => {
 
 
                             {/* Add the gradient overlay */}
-                            <div className="absolute inset-0 z-20 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-black/50 to-black/50 md:from-black/90 md:via-transparent md:to-transparent"></div>
                         </div>
                     ))}
                 </div>
