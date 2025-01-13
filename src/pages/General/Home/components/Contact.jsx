@@ -145,7 +145,7 @@ const ContactCard = ({ officer, size }) => {
 function Contact() {
 
   return (
-    <div id='contact' className='bg-[#CABBE2]/30  py-8 w-full my-10 mb-0 pb-16'>
+    <div id='contact' className='bg-[#CABBE2]/20  py-8 w-full my-10 mb-0 pb-16'>
       <div className='mb-6'>
         <h1 className='text-4xl text-center text-[#332C6F] font-bold'>Contact Us.</h1>
         <p className='text-center font-normal text-sm'>Get in touch with us</p>
