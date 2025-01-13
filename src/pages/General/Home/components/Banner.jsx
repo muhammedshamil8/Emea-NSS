@@ -39,15 +39,15 @@ function Banner() {
           <div className="embla__viewport2" >
             <div className="embla__container2">
                 <div className="embla__slide2 relative" >
-                  <div className="embla__slide__img2 flex items-center justify-center" >
+                  <div className="embla__slide__img2 flex items-center justify-center !p-10" >
                   <img
-                    src="https://i.imgur.com/llF5iyg.gif"
-                    className="mx-auto"
+                    src="https://i.imgur.com/llF5iyg.gif !p-10"
+                    className="mx-auto "
                   />
                   </div>
                   <div className="z-30 absolute bottom-8 md:bottom-16 left-0 right-0 mx-auto max-w-full flex justify-center px-4">
                     <div className="w-full text-white max-w-[1300px] p-2">
-                      <h1 className="text-[20px] sm:text-[38px] font-black text-left">
+                      <h1 className="text-[20px] sm:text-[38px] font-bold text-left">
                         {data.title || "Default Title"}
                       </h1>
                       <p className="text-responsive font-normal text-left text-sm sm:text-xl">

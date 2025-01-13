@@ -71,7 +71,7 @@ function Report() {
 
   return (
     <div className="min-h-[100vh] bg-gray-100 py-8">
-      <h1 className="text-3xl text-center text-indigo-700 font-semibold mb-8">Reports</h1>
+      <h1 className="text-3xl text-center text-[#332C6F] font-semibold mb-8">Reports</h1>
       <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 p-2">
         {loading ? (
           <p className="text-gray-500 text-center">Loading...</p>

@@ -92,31 +92,34 @@ function NodalOfficer() {
 
   return (
     <div className='relative max-w-[1300px] mx-auto'>
-    <div className="slider-container max-w-[90%] w-full  mx-auto ">
-      <Slider {...settings}>
-        {NodalOfficers.map((officer, index) => (
-          <div className='mx-auto w-full p-3' key={index}>
-            <div className='bg-slate-200 max-w-[800px] mx-auto flex flex-col md:flex-row rounded-3xl p-4 shadow-lg min-h-[400px] '>
-              <div className='md:w-1/2 flex items-center justify-center'>
-                <img
-                  src={officer.img}
-                  alt={`${officer.name}`}
-                  className='w-full h-auto object-cover rounded-full border-4 mb-2 border-white max-w-[260px]'
-                />
-              </div>
-              <div className='flex flex-col items-start justify-center md:w-1/2 space-y-3 bg-white p-4 rounded-xl'>
-                <h2 className='text-lg md:text-2xl font-semibold'>In-Charge</h2>
-                <h2 className='text-lg md:text-2xl font-semibold'>{officer.name}</h2>
-                <p className='text-sm md:text-base text-gray-700'>
-                  {officer.description}
-                </p>
+      <div className="slider-container max-w-[90%] w-full  mx-auto ">
+        <Slider {...settings}>
+          {NodalOfficers.map((officer, index) => (
+            <div className='mx-auto w-fit p-3 min-h-[200px] flex items-end justify-end pt-20 relative overflow-x-hidden ' key={index}>
+
+              <div className='bg-gradient-to-r from-[#D4DDFB]/50 to-[#F0EDFF]/50 max-w-[800px] mx-auto flex flex-col md:flex-row rounded-3xl  shadow-lg min-h-[200px] '>
+                <div className='md:w-[30%] flex items-center justify-center'>
+                  <img
+                    src={officer.img}
+                    alt={`${officer.name}`}
+                    className='w-full h-full   max-w-[260px] absolute -top-[12px] bottom-0'
+                  />
+                </div>
+                <div className='p-4 md:w-[70%]'>
+                  <div className='flex flex-col items-start justify-center  space-y-3 bg-white p-4 rounded-xl '>
+                    <h2 className='text-lg md:text-2xl font-semibold'>In-Charge</h2>
+                    <h2 className='text-lg md:text-2xl font-semibold'>{officer.name}</h2>
+                    <p className='text-sm md:text-base text-gray-700'>
+                      {officer.description}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </div>
     </div>
-  </div>
   );
 }
 

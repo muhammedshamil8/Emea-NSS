@@ -58,7 +58,7 @@ function Activitie() {
         <div className='min-h-[100vh] max-w-[1300px] mx-auto py-4 px-2'>
            <SelectedEvent event={selectedEvent} loading={loading} />
             <div className='flex flex-col mt-10'>
-                <h1 className='text-2xl text-left text-indigo-700 font-semibold mb-10'>Other Events</h1>
+                <h1 className='text-2xl text-left text-[#332C6F] font-semibold mb-10'>Other Events</h1>
                 {loading ? (
                     <div className="w-full h-96 flex items-center justify-center">
                         <p className="text-2xl text-gray-500">Loading...</p>

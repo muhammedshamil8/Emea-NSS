@@ -11,7 +11,7 @@ function SelectedEvent({ event, loading }) {
     }
 
     return (
-        <div className='w-full flex flex-col-reverse md:flex-row bg-sky-300/20 rounded-xl shadow p-8 gap-8'>
+        <div className='w-full flex flex-col-reverse md:flex-row bg-[#CABBE2]/20 rounded-xl shadow p-8 gap-8'>
             <div className='flex flex-col justify-between w-full md:w-1/2'>
                 <h1 className='text-4xl text-black font-semibold mb-2'>{event?.title}</h1>
                 <p className="text-gray-500 text-sm mb-2">
