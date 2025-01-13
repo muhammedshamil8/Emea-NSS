@@ -31,7 +31,7 @@ function Gallery() {
 
   return (
     <div className="min-h-[100vh] bg-gray-50 py-8">
-      <h1 className="text-2xl text-center text-indigo-700 font-semibold mb-8">Photo Gallery</h1>
+      <h1 className="text-2xl text-center text-[#332C6F] font-semibold mb-8">Photo Gallery</h1>
       <div className="mx-auto max-w-[1300px] px-4">
         <GridGallery galleryItems={galleryItems} isLoading={isLoading} />
       </div>

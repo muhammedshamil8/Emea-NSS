@@ -25,13 +25,13 @@ function NavBar() {
   }
 
   return (
-    <div className='flex justify-between p-2 max-w-[1300px] mx-auto !z-50 w-[90%]'>
+    <div className='flex justify-between p-2 py-3 max-w-[1400px] mx-auto !z-50 w-full sm:w-[90%]'>
       <div>
-        <img src={Logo} alt='logo' className='w-auto h-10 sm:h-12' />
+        <img src={Logo} alt='logo' className='w-auto h-10 sm:h-10' />
       </div>
       <div className='hidden md:flex items-center justify-center gap-4'>
         {navLinks.map((link, index) => (
-          <div key={index} className="flex items-center justify-center gap-4" onClick={handleContactScroll}>
+          <div key={index} className="flex items-center justify-center gap-4 text-sm" onClick={handleContactScroll}>
             {link.href === '/contact' ? (
               <ScrollLink
                 onClick={() => {
@@ -41,16 +41,16 @@ function NavBar() {
                 to='contact'
                 smooth={true}
                 duration={500}
-                className={`${location.pathname === link.href || location.hash === '#contact' ? 'text-red-500 font-bold' : 'text-black'
-                  } hover:text-red-500 transition-all ease-in-out cursor-pointer`}
+                className={`${location.pathname === link.href || location.hash === '#contact' ? 'text-[#FF4C5A] font-bold' : 'text-black'
+                  } hover:text-[#FF4C5A] transition-all ease-in-out cursor-pointer`}
               >
                 {link.label}
               </ScrollLink>
             ) : (
               <Link
                 to={link.href}
-                className={`${location.pathname === link.href && location.hash !== '#contact' ? 'text-red-500 font-bold' : 'text-black'
-                  } hover:text-red-500 transition-all ease-in-out`}
+                className={`${location.pathname === link.href && location.hash !== '#contact' ? 'text-[#FF4C5A] font-bold' : 'text-black'
+                  } hover:text-[#FF4C5A] transition-all ease-in-out`}
               >
                 {link.label}
               </Link>
@@ -58,7 +58,7 @@ function NavBar() {
           </div>
         ))}
         <button
-          className='bg-red-500 text-white p-[5px] rounded-xl px-6 hover:bg-red-600'
+          className='bg-[#FF4C5A] text-white p-[5px] py-[3px] rounded-xl px-6 hover:bg-red-600'
           onClick={handleClick}
         >
           Login
@@ -68,7 +68,7 @@ function NavBar() {
       {/* Mobile Menu Toggle */}
       <div className="md:hidden flex gap-2 items-center justify-center">
         <button
-          className='bg-red-500 text-white p-1 rounded-xl px-4 sm:px-6 hover:bg-red-600'
+          className='bg-[#FF4C5A] text-white p-1 rounded-xl px-4 sm:px-6 hover:bg-[#ca3b47]'
           onClick={handleClick}
         >
           Login
@@ -108,8 +108,8 @@ function NavBar() {
                 to='contact'
                 smooth={true}
                 duration={500}
-                className={`${location.pathname === link.href || location.hash === '#contact' ? 'text-red-500 font-bold' : 'text-black'
-                  } hover:text-red-500 transition-all ease-in-out cursor-pointer p-2`}
+                className={`${location.pathname === link.href || location.hash === '#contact' ? 'text-[#FF4C5A] font-bold' : 'text-black'
+                  } hover:text-[#FF4C5A] transition-all ease-in-out cursor-pointer p-2`}
               >
                 {link.label}
               </ScrollLink>
@@ -117,8 +117,8 @@ function NavBar() {
               <Link
                 to={link.href}
                 onClick={() => { toggleNav() }}
-                className={`${location.pathname === link.href && location.hash !== '#contact' ? 'text-red-500 font-bold' : 'text-black'
-                  } hover:text-red-500 transition-all ease-in-out p-2`}
+                className={`${location.pathname === link.href && location.hash !== '#contact' ? 'text-[#FF4C5A] font-bold' : 'text-black'
+                  } hover:text-[#FF4C5A] transition-all ease-in-out p-2`}
               >
                 {link.label}
               </Link>

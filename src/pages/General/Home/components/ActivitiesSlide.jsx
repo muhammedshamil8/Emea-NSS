@@ -51,7 +51,7 @@ function Activitie() {
   return (
     <div className='mx-auto max-w-[1300px] '>
       <div className='text-center mb-6'>
-        <h1 className='text-2xl text-center text-indigo-700 font-semibold'>Recent Activities</h1>
+        <h1 className='text-2xl text-center text-[#332C6F] font-semibold'>Recent Activities</h1>
         <p className='font-normal text-sm'>Highlighting Major Activities by NSS EMEA</p>
       </div>
       <EmblaCarousel slides={recentEvents} options={OPTIONS} />

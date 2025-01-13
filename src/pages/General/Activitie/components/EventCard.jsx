@@ -13,7 +13,7 @@ function EventCard({ event }) {
 
     return (
         <div 
-            className='border bg-gray-400 rounded-xl h-[280px] w-full min-w-[260px] md:max-w-[260px] flex items-start overflow-hidden relative transition-transform duration-300 transform hover:scale-105 hover:shadow-lg hover:translate-y-[-5px]' 
+            className='border bg-gray-400 rounded-xl h-[280px] w-full min-w-[260px] md:max-w-[260px] flex items-start overflow-hidden relative transition-transform duration-300 transform hover:scale-105 hover:shadow-lg hover:translate-y-[-5px] mx-auto' 
             onClick={() => handleNavigate(event.id)}
         >
             <img 

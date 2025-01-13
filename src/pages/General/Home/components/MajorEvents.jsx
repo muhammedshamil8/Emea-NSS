@@ -47,7 +47,7 @@ function MajorEvents() {
     <>
       <div className='p-4 w-full max-w-[1300px] mx-auto'>
         <div className='text-left mb-6 pl-5'>
-          <h1 className='text-2xl text-indigo-700 font-semibold'>Major Activities</h1>
+          <h1 className='text-2xl text-[#332C6F] font-semibold'>Major Activities</h1>
           <p className='font-normal text-sm'>Highlighting Major Activities by NSS EMEA</p>
         </div>
         <div className="grid gap-6 justify-center" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>

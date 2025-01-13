@@ -145,7 +145,7 @@ function Activitie() {
       <Banner />
 
       <div className='flex flex-col my-10'>
-        <h1 className='text-2xl text-left text-indigo-700 font-semibold mb-10'>Recent Activities</h1>
+        <h1 className='text-2xl text-left text-[#332C6F] font-semibold mb-10'>Recent Activities</h1>
         <div className="slider-container p-2 mx-auto sm:max-0 max-w-[90%] md:max-w-full w-full relative">
           {loading ? (
             <div className="w-full h-96 flex items-center justify-center">
@@ -164,13 +164,13 @@ function Activitie() {
       </div>
 
       <div className='flex flex-col'>
-        <h1 className='text-2xl text-left text-indigo-700 font-semibold mb-10'>All Activities</h1>
+        <h1 className='text-2xl text-left text-[#332C6F] font-semibold mb-10'>All Activities</h1>
         {loading ? (
           <div className="w-full h-96 flex items-center justify-center">
             <p className="text-2xl text-gray-500">Loading...</p>
           </div>
         ) : (
-          <div className='grid gap-4 mb-20' style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+          <div className='grid gap-4 mb-20 mx-auto' style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
             {events.map((event, index) => (
               <EventCard key={index} event={event} />
             ))}
