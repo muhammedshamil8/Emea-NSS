@@ -119,23 +119,23 @@ const ContactCard = ({ officer, size }) => {
     <div className='w-fit rounded-xl bg-white shadow p-2'>
       <div className={classNames('bg-slate-200 rounded-full overflow-hidden m-4  flex items-center justify-center pt-4',
         {
-          'w-[70px] sm:w-24 h-[70px] sm:h-24': size === 'big',
-          'w-[50px] sm:w-[70px] h-[50px] sm:h-[70px]': size === 'small',
+          'w-[80px] sm:w-[140px] h-[80px] sm:h-[140px]': size === 'big',
+          'w-[60px] sm:w-[100px] h-[60px] sm:h-[100px]': size === 'small',
         }
       )}>
         {officer.image && <img src={officer.image} alt={officer.name} className='h-auto w-auto' />}
       </div>
-      <h1 className='text-center text-[12px] font-semibold text-purple-800'>{officer.name}</h1>
-      <p className='text-center text-[8px]'>{officer.position}</p>
+      <h1 className='text-center text-[14px] sm:text-[16px] font-semibold text-purple-800'>{officer.name}</h1>
+      <p className='text-center text-[10px] sm:text-[12px]'>{officer.position}</p>
       <div className='flex justify-center gap-2 my-2'>
         <a href={`tel:${officer.social.phone}`} className=''>
-        <PhoneCall className='w-2 h-2'/>
+        <PhoneCall className='w-3 h-3 sm:w-4 sm:h-4'/>
         </a>
         <a href={`mailto:${officer.social.email}`} className=''>
-          <Mail className='w-2 h-2'/>
+          <Mail className='w-3 h-3 sm:w-4 sm:h-4'/>
         </a>
         <a href={officer.social.instagram} className=''>
-          <Instagram className='w-2 h-2'/>
+          <Instagram className='w-3 h-3 sm:w-4 sm:h-4 '/>
         </a>
       </div>
     </div >
