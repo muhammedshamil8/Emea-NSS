@@ -170,7 +170,7 @@ function Activitie() {
             <p className="text-2xl text-gray-500">Loading...</p>
           </div>
         ) : (
-          <div className='grid gap-4 mb-20 mx-auto' style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+          <div className='grid gap-4 mb-20 ' style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
             {events.map((event, index) => (
               <EventCard key={index} event={event} />
             ))}

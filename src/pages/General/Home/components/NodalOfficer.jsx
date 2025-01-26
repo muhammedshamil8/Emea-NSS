@@ -80,32 +80,32 @@ function NodalOfficer() {
   const NodalOfficers = [
     {
       name: 'Munavar Jasim',
-      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra condimentum cras purus viverra. Porttitor semper egestas augue cras facilisi at felis.',
+      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra condimentum cras purus viverra. Porttitor semper egestas augue cras facilisi at felis.Lorem ipsum dolor sit amet consectetur. Pharetra condimentum cras purus viverra. Porttitor semper egestas augue cras facilisi at felis.',
       img: JadimSirBig
     },
     {
       name: 'Shihabudheen',
-      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra condimentum cras purus viverra. Porttitor semper egestas augue cras facilisi at felis.',
+      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra condimentum cras purus viverra. Porttitor semper egestas augue cras facilisi at felis.Lorem ipsum dolor sit amet consectetur. Pharetra condimentum cras purus viverra. Porttitor semper egestas augue cras facilisi at felis.',
       img: ShihabudheenSir
     },
   ];
 
   return (
-    <div className='relative max-w-[1300px] mx-auto'>
-      <div className="slider-container max-w-[90%] w-full  mx-auto ">
+    <div className='relative max-w-[1300px] mx-auto overflow-hidden'>
+      <div className="slider-container max-w-[850px] w-full  mx-auto ">
         <Slider {...settings}>
           {NodalOfficers.map((officer, index) => (
             <div className='mx-auto w-fit p-3 min-h-[200px] flex items-end justify-end  ' key={index}>
               <div className=' overflow-x-hidden relative overflow-y-visible h-full min-h-[200px] pt-20 '>
                 <div className='bg-gradient-to-r from-[#D4DDFB]/50 to-[#F0EDFF]/50 max-w-[800px] mx-auto flex flex-col md:flex-row rounded-3xl min-h-[250px]'>
-                  <div className='md:w-[30%] flex items-center justify-center '>
+                  <div className='w-full md:w-[30%] flex items-center justify-center -mt-14'>
                     <img
                       src={officer.img}
                       alt={`${officer.name}`}
-                      className='w-full h-full   max-w-[260px] absolute -top-[0px] left-4 bottom-0'
+                      className='w-full h-full   max-w-[260px] md:absolute -top-[0px] left-4 bottom-0'
                     />
                   </div>
-                  <div className='p-4 md:w-[70%]'>
+                  <div className='p-4 pt-0 md:pt-4  md:w-[70%]'>
                     <div className='flex flex-col items-start justify-center   bg-white p-4 rounded-xl '>
                       <h2 className='text-lg md:text-2xl font-semibold'>In-Charge</h2>
                       <h2 className='text-lg md:text-2xl font-semibold'>{officer.name}</h2>

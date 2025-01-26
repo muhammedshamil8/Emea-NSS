@@ -9,7 +9,7 @@ function About() {
     navigate('/about')
   }
   return (
-    <div className='bg-slate-100 p-6 py-10 '>
+    <div className='bg-[#CABBE2]/25 p-6 py-10 '>
       <div className='max-w-[1300px] mx-auto flex gap-10'>
           <div className='hidden items-center justify-center md:w-1/2 md:flex'>
             <img  src={NSSLOGO} alt='NSS EMEA Logo' className='max-w-[300px]' />

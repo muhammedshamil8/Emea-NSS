@@ -64,7 +64,7 @@ function VolunteerLayout() {
         </ul>
       </nav>
 
-      <main className="h-full mb-20 md:mb-0 bg-slate-50">
+      <main className="h-full mb-20 md:mb-0 ">
         <Outlet context={{ myData }} /> {/* Pass user data to Outlet */}
       </main>
 
