@@ -26,10 +26,10 @@ const Profile = () => {
   return (
     <div className="p-8 min-h-screen">
     <div className="flex justify-center items-center  bg-gray-50 py-10">
-      <div className="w-full max-w-6xl p-8 bg-white shadow-2xl rounded-lg flex space-x-8">
+      <div className="w-full max-w-6xl p-8 bg-white shadow-2xl rounded-lg flex flex-col gap-8 md:gap-0 md:flex-row md:space-x-8">
         
         {/* Left Column */}
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <Card className="shadow-lg hover:shadow-2xl transition-shadow duration-300">
             <CardHeader className="flex items-center justify-center p-6 bg-gray-100">
               <img
@@ -49,7 +49,7 @@ const Profile = () => {
         </div>
 
         {/* Right Column */}
-        <div className="w-2/3 space-y-8">
+        <div className="w-full md:w-2/3 space-y-8">
           {/* Profile Information */}
           <Card className="shadow-lg hover:shadow-2xl transition-shadow duration-300">
             <CardHeader>
